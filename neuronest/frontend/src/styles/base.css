@@ -1,0 +1,74 @@
+/**
+ * Base Styles
+ * Foundation styles for the application
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root elements */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #ffffff;
+  color: #1a1a1a;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Font size accessibility */
+html.font-normal { font-size: 15px; }
+html.font-large { font-size: 17px; }
+html.font-extra-large { font-size: 20px; }
+
+/* Focus styles for accessibility */
+:focus-visible {
+  outline: 2px solid rgba(122, 154, 122, 0.5);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(122, 154, 122, 0.3);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(122, 154, 122, 0.5);
+}
+
+/* Selection styling */
+::selection {
+  background: rgba(122, 154, 122, 0.25);
+  color: #1a1a1a;
+}

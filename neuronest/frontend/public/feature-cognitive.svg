@@ -1,0 +1,36 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="cogGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#60a5fa;stop-opacity:0.4" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Brain puzzle pieces representing cognitive training -->
+  <g transform="translate(100, 100)">
+    <!-- Puzzle piece 1 -->
+    <path d="M50 50 L100 50 Q110 50, 110 60 L110 100 L60 100 Q50 100, 50 90 Z" 
+          fill="url(#cogGrad)" opacity="0.8" stroke="#3b82f6" stroke-width="2">
+      <animate attributeName="opacity" values="0.8;1;0.8" dur="3s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Puzzle piece 2 -->
+    <path d="M110 50 L160 50 Q170 50, 170 60 L170 100 L120 100 L110 100 Z" 
+          fill="url(#cogGrad)" opacity="0.7" stroke="#3b82f6" stroke-width="2">
+      <animate attributeName="opacity" values="0.7;0.95;0.7" dur="3.5s" repeatCount="indefinite"/>
+    </path>
+    
+    <!-- Neural connection lines -->
+    <line x1="75" y1="75" x2="135" y2="75" stroke="#60a5fa" stroke-width="2" opacity="0.5">
+      <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2s" repeatCount="indefinite"/>
+    </line>
+    
+    <!-- Nodes -->
+    <circle cx="75" cy="75" r="6" fill="#60a5fa">
+      <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="135" cy="75" r="6" fill="#60a5fa">
+      <animate attributeName="r" values="6;8;6" dur="2.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
+</svg>

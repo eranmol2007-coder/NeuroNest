@@ -1,0 +1,113 @@
+/**
+ * Component Styles
+ * Reusable component classes
+ */
+
+/* Glass morphism effects */
+.glass-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 2px 8px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 
+    0 20px 60px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 0.95);
+}
+
+/* Input fields */
+.glass-input,
+.glass-select {
+  width: 100%;
+  padding: 14px 18px;
+  font-size: 0.9375rem;
+  font-family: inherit;
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.glass-input::placeholder {
+  color: #a0a0a0;
+}
+
+.glass-input:focus,
+.glass-select:focus {
+  border-color: #7a9a7a;
+  background: rgba(255, 255, 255, 1);
+  box-shadow: 0 0 0 4px rgba(122, 154, 122, 0.1);
+}
+
+/* Buttons */
+.btn-green {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 16px 28px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  font-family: inherit;
+  letter-spacing: 0.05em;
+  color: #ffffff;
+  background: linear-gradient(135deg, #2a5a2a 0%, #4a7a4a 50%, #2a5a2a 100%);
+  background-size: 200% 200%;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 24px rgba(42, 90, 42, 0.3);
+}
+
+.btn-green:hover {
+  background-position: 100% 100%;
+  box-shadow: 0 8px 40px rgba(42, 90, 42, 0.4);
+  transform: translateY(-2px);
+}
+
+.btn-green:active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn-green:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.btn-glass {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #1a1a1a;
+  background: rgba(255, 255, 255, 0.9);
+  border: 2px solid rgba(200, 200, 200, 0.3);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-glass:hover {
+  background: rgba(255, 255, 255, 1);
+  border-color: #7a9a7a;
+  transform: translateY(-1px);
+}
