@@ -1,48 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePatient } from '../context/PatientContext.jsx';
 import { useTranslation } from '../context/LanguageContext.jsx';
-import { patientsApi } from '../services/api';
-
-const LANGUAGES = ['English', 'Assamese', 'Bengali', 'Hindi', 'Khasi', 'Mizo', 'Nagamese', 'Manipuri', 'Nepali'];
 
 export default function WelcomePage() {
-  const { patient, loadPatient } = usePatient();
+  const { patient } = usePatient();
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const [mode, setMode] = useState('landing');
-  const [existingPatients, setExistingPatients] = useState([]);
-  const [loadingExisting, setLoadingExisting] = useState(false);
-  const [form, setForm] = useState({ name: '', age: '', language: 'English', gender: 'Prefer not to say' });
-  const [creating, setCreating] = useState(false);
-  const [error, setError] = useState(null);
-
   useEffect(() => { if (patient) navigate('/home'); }, [patient, navigate]);
 
-  const loadExisting = async () => {
-    setMode('existing');
-    setLoadingExisting(true);
-    setError(null);
-    try { const res = await patientsApi.getAll(); setExistingPatients(res.data); }
-    catch { setError('Unable to load profiles'); }
-    finally { setLoadingExisting(false); }
-  };
-
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    if (!form.name.trim() || !form.age) return;
-    setCreating(true);
-    setError(null);
-    try {
-      const res = await patientsApi.create({ ...form, age: parseInt(form.age, 10) });
-      await loadPatient(res.data._id);
-      navigate('/home');
-    } catch (err) { setError(err.message || 'Unable to create profile'); }
-    finally { setCreating(false); }
-  };
-
-  if (mode === 'landing') {
-    return (
+  return (
       <div className="brendon-page">
         {/* Hero Section - Exact replica */}
         <section className="brendon-hero">
@@ -60,7 +27,7 @@ export default function WelcomePage() {
             <p className="brendon-hero-location">
               Accessible from anywhere with our digital cognitive care platform.
             </p>
-            <button onClick={() => setMode('create')} className="brendon-hero-button">
+            <button onClick={() => navigate('/signup')} className="brendon-hero-button">
               Get Started Today
             </button>
           </div>
@@ -250,7 +217,7 @@ export default function WelcomePage() {
             <p className="brendon-cta-text">
               Start using NeuroNest today with personalized cognitive training and compassionate assistance.
             </p>
-            <button onClick={() => setMode('create')} className="brendon-cta-button">
+            <button onClick={() => navigate('/signup')} className="brendon-cta-button">
               Get Started Today
             </button>
           </div>
@@ -266,143 +233,6 @@ export default function WelcomePage() {
         </footer>
       </div>
     );
-  }
-
-  // Create Profile Mode
-  if (mode === 'create') {
-    return (
-      <div className="brendon-page brendon-form-page">
-        <div className="brendon-form-container">
-          <div className="brendon-form-card">
-            <button onClick={() => setMode('landing')} className="brendon-back-btn">
-              ← Back
-            </button>
-            
-            <h2 className="brendon-form-title">Create Your Profile</h2>
-            <p className="brendon-form-subtitle">Tell us a bit about yourself to get started</p>
-
-            <form onSubmit={handleCreate} className="brendon-form">
-              <div className="brendon-form-group">
-                <label className="brendon-label">Full Name</label>
-                <input 
-                  type="text" 
-                  required 
-                  value={form.name} 
-                  onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} 
-                  className="brendon-input" 
-                  placeholder="Enter your name" 
-                />
-              </div>
-              
-              <div className="brendon-form-row">
-                <div className="brendon-form-group">
-                  <label className="brendon-label">Age</label>
-                  <input 
-                    type="number" 
-                    required 
-                    min="1" 
-                    max="130" 
-                    value={form.age} 
-                    onChange={(e) => setForm((f) => ({ ...f, age: e.target.value }))} 
-                    className="brendon-input" 
-                    placeholder="Enter your age" 
-                  />
-                </div>
-                
-                <div className="brendon-form-group">
-                  <label className="brendon-label">Gender</label>
-                  <select 
-                    value={form.gender} 
-                    onChange={(e) => setForm((f) => ({ ...f, gender: e.target.value }))} 
-                    className="brendon-select"
-                  >
-                    <option>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                    <option>Prefer not to say</option>
-                  </select>
-                </div>
-              </div>
-              
-              <div className="brendon-form-group">
-                <label className="brendon-label">Preferred Language</label>
-                <select 
-                  value={form.language} 
-                  onChange={(e) => setForm((f) => ({ ...f, language: e.target.value }))} 
-                  className="brendon-select"
-                >
-                  {LANGUAGES.map((l) => <option key={l} value={l}>{l}</option>)}
-                </select>
-              </div>
-
-              {error && (
-                <div className="brendon-error">
-                  {error}
-                </div>
-              )}
-
-              <button type="submit" disabled={creating || !form.name.trim() || !form.age} className="brendon-submit-btn">
-                {creating ? 'Creating...' : 'Continue'}
-              </button>
-
-              <button type="button" onClick={loadExisting} className="brendon-link-btn">
-                Already have a profile? Sign in
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Existing Profiles Mode
-  return (
-    <div className="brendon-page brendon-form-page">
-      <div className="brendon-form-container">
-        <div className="brendon-form-card">
-          <button onClick={() => setMode('landing')} className="brendon-back-btn">
-            ← Back
-          </button>
-          
-          <h2 className="brendon-form-title">Select Your Profile</h2>
-          <p className="brendon-form-subtitle">Choose from your existing profiles</p>
-
-          {loadingExisting && (
-            <div className="brendon-loading">
-              <div className="brendon-spinner"></div>
-              <p>Loading profiles...</p>
-            </div>
-          )}
-
-          {error && <div className="brendon-error">{error}</div>}
-
-          {!loadingExisting && !error && existingPatients.length === 0 && (
-            <p className="brendon-no-profiles">No profiles found. Create one to get started.</p>
-          )}
-
-          <div className="brendon-profiles-list">
-            {existingPatients.map((p) => (
-              <button 
-                key={p._id} 
-                onClick={async () => { await loadPatient(p._id); navigate('/home'); }}
-                className="brendon-profile-btn"
-              >
-                <div>
-                  <p className="brendon-profile-name">{p.name}</p>
-                  <p className="brendon-profile-meta">Age {p.age} • {p.language}</p>
-                </div>
-                <span className="brendon-profile-arrow">→</span>
-              </button>
-            ))}
-          </div>
-
-          <button type="button" onClick={() => setMode('create')} className="brendon-link-btn">
-            Create a new profile
-          </button>
-        </div>
-      </div>
-    </div>
-  );
 }
 
 

@@ -52,6 +52,9 @@ coverage/
 .nyc_output/
 *.lcov
 
+# Runtime data
+backend/data/
+
 # Misc
 *.pem
 .vercel

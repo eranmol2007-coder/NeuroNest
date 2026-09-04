@@ -1,9 +1,9 @@
 import React from 'react';
 import { NavLink, useNavigate, useLocation } from 'react-router-dom';
 import { usePatient } from '../../context/PatientContext.jsx';
+import { useAuth } from '../../context/AuthContext.jsx';
 import { useTranslation } from '../../context/LanguageContext.jsx';
 
-// Neural Network Logo SVG
 const NeuroNestLogo = () => (
   <svg width="36" height="36" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <circle cx="20" cy="20" r="18" fill="url(#glass-gradient)" stroke="url(#border-gradient)" strokeWidth="1.5"/>
@@ -40,37 +40,70 @@ const NeuroNestLogo = () => (
   </svg>
 );
 
+function IconSignIn({ size = 18, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <path d="M6 4 H3 C2.5 4 2 4.5 2 5 V13 C2 13.5 2.5 14 3 14 H6" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M12 9 L7 9 M12 9 L10 7 M12 9 L10 11" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+function IconSignOut({ size = 18, color = 'currentColor' }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 18 18" fill="none">
+      <path d="M12 4 H15 C15.5 4 16 4.5 16 5 V13 C16 13.5 15.5 14 15 14 H12" stroke={color} strokeWidth="1.8" strokeLinecap="round" />
+      <path d="M6 9 L11 9 M6 9 L8 7 M6 9 L8 11" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
 export default function NavBar() {
   const { patient, clearPatient } = usePatient();
+  const { user, caregiver, logout } = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const isLanding = location.pathname === '/' && !patient;
+  const isLanding = location.pathname === '/' && !user;
+  const isAuthPage = location.pathname === '/signin' || location.pathname === '/signup';
+  const isCaregiver = !!caregiver;
+
+  if (isAuthPage) return null;
 
   return (
     <header className="nav-glass">
       <div className="nav-inner">
-        {/* Logo — always visible inside the bar */}
-        <button onClick={() => navigate(patient ? '/home' : '/')} className="nav-brand">
+        <button onClick={() => navigate(user ? (isCaregiver ? '/caregiver' : '/home') : '/')} className="nav-brand">
           <NeuroNestLogo />
           <div className="nav-brand-text">
             <span className="nav-brand-name">{t('app_name')}</span>
-            <span className="nav-brand-tagline">Cognitive Care Platform</span>
+            <span className="nav-brand-tagline">{isCaregiver ? 'Caregiver Portal' : 'Cognitive Care Platform'}</span>
           </div>
         </button>
 
-        {/* Nav links */}
-        {patient ? (
+        {user ? (
           <nav className="nav-links" aria-label="Main navigation">
-            <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
-            <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
-            <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
-            <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
-            <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
+            {isCaregiver ? (
+              <>
+                <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
+                <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
+                <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
+                <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
+                <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
+                <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
+                <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
+                <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
+                <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
+              </>
+            )}
             <div className="nav-divider" />
-            <button onClick={() => { clearPatient(); navigate('/'); }} className="nav-link nav-signout">
-              {t('nav.sign_out')}
+            <button onClick={() => { clearPatient(); logout(); navigate('/'); }} className="nav-link nav-signout" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <IconSignOut size={16} /> {t('nav.sign_out')}
             </button>
           </nav>
         ) : (
@@ -79,8 +112,8 @@ export default function NavBar() {
             <button onClick={() => document.querySelector('.brendon-about')?.scrollIntoView({ behavior: 'smooth' })} className="nav-link">About</button>
             <button onClick={() => document.querySelector('.brendon-services')?.scrollIntoView({ behavior: 'smooth' })} className="nav-link">Features</button>
             <div className="nav-divider" />
-            <button onClick={() => { window.scrollTo({ top: 0, behavior: 'smooth' }); navigate('/'); }} className="nav-link" style={{ color: '#2a5a2a', fontWeight: '600' }}>
-              Sign In
+            <button onClick={() => navigate('/signin')} className="nav-link" style={{ color: '#2a5a2a', fontWeight: '600', display: 'flex', alignItems: 'center', gap: '6px' }}>
+              <IconSignIn size={16} /> Sign In
             </button>
           </nav>
         )}
@@ -88,6 +121,3 @@ export default function NavBar() {
     </header>
   );
 }
-
-
-

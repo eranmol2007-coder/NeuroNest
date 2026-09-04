@@ -228,17 +228,37 @@ function parseIntent(transcript, lang) {
     return { intent: 'check_reminders', filter: null };
   }
 
-  // 4. Progress & Dashboard
-  if (/(progress|score|doing|dashboard|home|main|wapas|back)/i.test(text)) {
+  // 4. Navigate to specific pages
+  if (/(open|go to|show|take me to|navigate).*(reminder)/i.test(text)) {
+    return { intent: 'navigate_page', target: '/reminders' };
+  }
+  if (/(open|go to|show|take me to|navigate).*(setting)/i.test(text)) {
+    return { intent: 'navigate_page', target: '/settings' };
+  }
+  if (/(open|go to|show|take me to|navigate).*(game)/i.test(text)) {
+    return { intent: 'navigate_page', target: '/games' };
+  }
+  if (/(open|go to|show|take me to|navigate).*(home|dashboard)/i.test(text)) {
+    return { intent: 'navigate_page', target: '/home' };
+  }
+  if (/(open|go to|show|take me to|navigate).*(caregiver)/i.test(text)) {
+    return { intent: 'navigate_page', target: '/caregiver' };
+  }
+
+  // 5. Progress & Dashboard
+  if (/(progress|score|doing)/i.test(text)) {
+    return { intent: 'check_progress' };
+  }
+  if (/(home|main|wapas|back)/i.test(text)) {
     return { intent: 'navigate_home' };
   }
   
-  // 5. Mood
+  // 6. Mood
   if (/(mood|feel|feeling|kaisa|lag)/i.test(text)) {
     return { intent: 'mood_checkin' };
   }
   
-  // 6. Help
+  // 7. Help
   if (/(help|assist|what|sahay|madad)/i.test(text)) {
     return { intent: 'help' };
   }
@@ -320,6 +340,12 @@ const processVoiceCommand = asyncHandler(async (req, res) => {
       break; 
     }
     case 'help': { speech = s.help; break; }
+    case 'navigate_page': {
+      const PAGE_NAMES = { '/reminders': 'Reminders', '/settings': 'Settings', '/games': 'Games', '/home': 'Dashboard', '/caregiver': 'Caregiver' };
+      speech = s.opening(PAGE_NAMES[parsed.target] || 'that page');
+      data = { action: 'navigate', target: parsed.target };
+      break;
+    }
     default: { speech = s.unknown; }
   }
 

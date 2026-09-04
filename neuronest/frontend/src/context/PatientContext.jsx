@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { patientsApi } from '../services/api';
 import { cacheGet, cacheSet } from '../services/offlineSync';
+import { useAuth } from './AuthContext.jsx';
 
 const PatientContext = createContext(null);
 
@@ -9,8 +10,10 @@ const ACTIVE_PATIENT_KEY = 'neuronest_active_patient_id';
 export function PatientProvider({ children }) {
   const [patient, setPatient] = useState(null);
   const [loading, setLoading] = useState(true);
+  const { patient: authPatient, user } = useAuth();
 
   const loadPatient = useCallback(async (id) => {
+    if (!id) { setLoading(false); return; }
     setLoading(true);
     try {
       const res = await patientsApi.getById(id);
@@ -18,8 +21,6 @@ export function PatientProvider({ children }) {
       await cacheSet('activePatient', res.data);
       localStorage.setItem(ACTIVE_PATIENT_KEY, id);
     } catch (err) {
-      // Offline or server down — fall back to last cached profile if it
-      // matches the requested id, so the app is still usable offline.
       const cached = await cacheGet('activePatient');
       if (cached && cached._id === id) {
         setPatient(cached);
@@ -34,8 +35,6 @@ export function PatientProvider({ children }) {
     localStorage.removeItem(ACTIVE_PATIENT_KEY);
   }, []);
 
-  // Apply font-size preference to <html> so it affects the whole app,
-  // including modals/toasts rendered outside the main layout.
   useEffect(() => {
     const root = document.documentElement;
     root.classList.remove('font-normal', 'font-large', 'font-extra-large');
@@ -44,13 +43,23 @@ export function PatientProvider({ children }) {
   }, [patient?.fontSizePreference]);
 
   useEffect(() => {
-    const savedId = localStorage.getItem(ACTIVE_PATIENT_KEY);
-    if (savedId) {
-      loadPatient(savedId);
-    } else {
+    if (authPatient && user) {
+      setPatient(authPatient);
+      localStorage.setItem(ACTIVE_PATIENT_KEY, authPatient._id);
       setLoading(false);
+    } else if (user && user.patientId && !authPatient) {
+      loadPatient(user.patientId);
+    } else if (user && !user.patientId) {
+      setLoading(false);
+    } else if (!user) {
+      const savedId = localStorage.getItem(ACTIVE_PATIENT_KEY);
+      if (savedId) {
+        loadPatient(savedId);
+      } else {
+        setLoading(false);
+      }
     }
-  }, [loadPatient]);
+  }, [authPatient, user, loadPatient]);
 
   const updateLocalPatient = useCallback((updates) => {
     setPatient((prev) => {
@@ -74,5 +83,3 @@ export function usePatient() {
   if (!ctx) throw new Error('usePatient must be used within a PatientProvider');
   return ctx;
 }
-
-

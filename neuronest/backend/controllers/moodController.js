@@ -11,9 +11,9 @@ const submitMood = asyncHandler(async (req, res) => {
   }
 
   const moodScore = MoodCheckin.scoreForMood(mood);
-  const checkin = await MoodCheckin.create({ patientId, mood, moodScore, note });
+  const checkin = await MoodCheckin.create({ patientId, mood, moodScore, note, date: new Date() });
 
-  const recent = await MoodCheckin.find({ patientId }).sort({ date: -1 }).limit(5);
+  const recent = await MoodCheckin.find({ patientId }).sort({ createdAt: -1 }).limit(5);
   const alertPayload = checkMoodDeclineAlert(patientId, recent);
   let alertCreated = null;
   if (alertPayload) {
@@ -27,7 +27,7 @@ const getMoodsForPatient = asyncHandler(async (req, res) => {
   const { MoodCheckin } = getModels();
   const { limit } = req.query;
   const moods = await MoodCheckin.find({ patientId: req.params.patientId })
-    .sort({ date: -1 })
+    .sort({ createdAt: -1 })
     .limit(limit ? parseInt(limit, 10) : 30);
   res.json({ success: true, count: moods.length, data: moods.reverse() });
 });

@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useCallback, useMemo } from 'react';
+import React, { createContext, useContext, useCallback, useMemo, useState, useEffect } from 'react';
 import en from '../i18n/en.json';
 import as from '../i18n/as.json';
 import bn from '../i18n/bn.json';
@@ -9,6 +9,7 @@ import nagamese from '../i18n/nagamese.json';
 import mni from '../i18n/mni.json';
 import ne from '../i18n/ne.json';
 import { usePatient } from './PatientContext.jsx';
+import { decayDetector, SIMPLIFIED_DIALECTS } from '../services/linguisticDecay';
 
 const LANG_MAP = { English: en, Assamese: as, Bengali: bn, Hindi: hi, Khasi: kha, Mizo: mzo, Nagamese: nagamese, Manipuri: mni, Nepali: ne };
 
@@ -27,28 +28,60 @@ export function LanguageProvider({ children }) {
   const { patient } = usePatient();
   const langName = patient?.language || 'English';
 
+  const [decayLevel, setDecayLevel] = useState(0);
+  const [isAutoTranslated, setIsAutoTranslated] = useState(false);
+
+  // Set original language in decay detector when language changes
+  useEffect(() => {
+    decayDetector.setOriginalLanguage(langName);
+  }, [langName]);
+
+  // Listen for decay level changes
+  useEffect(() => {
+    const unsub = decayDetector.onDecayChange((level) => {
+      setDecayLevel(level);
+      setIsAutoTranslated(level > 0);
+    });
+    return unsub;
+  }, []);
+
   const t = useCallback(
     (key, params) => {
       const currentDict = LANG_MAP[langName] || LANG_MAP.English;
-      const val = getVal(currentDict, key);
+      let val = getVal(currentDict, key);
+
+      // If decay detected, try simplified text first
+      if (decayLevel > 0 && typeof val === 'string') {
+        const simplified = decayDetector.getSimplifiedText(val);
+        if (simplified !== val) {
+          return interpolate(String(simplified), params);
+        }
+      }
+
       if (val !== null && val !== undefined) return interpolate(String(val), params);
       const fallback = getVal(LANG_MAP.English, key);
       if (fallback !== null && fallback !== undefined) return interpolate(String(fallback), params);
       return key;
     },
-    [langName]
+    [langName, decayLevel]
   );
 
   const dict = LANG_MAP[langName] || LANG_MAP.English;
-  const value = useMemo(() => ({ t, lang: langName, dict, langKey: langName }), [t, langName, dict]);
+  const value = useMemo(() => ({
+    t,
+    lang: langName,
+    dict,
+    langKey: langName,
+    decayLevel,
+    isAutoTranslated,
+    decayStatus: decayDetector.getStatus(),
+  }), [t, langName, dict, decayLevel, isAutoTranslated]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 }
 
 export function useTranslation() {
   const ctx = useContext(LanguageContext);
-  if (!ctx) return { t: (k) => k, lang: 'English' };
+  if (!ctx) return { t: (k) => k, lang: 'English', decayLevel: 0, isAutoTranslated: false };
   return ctx;
 }
-
-

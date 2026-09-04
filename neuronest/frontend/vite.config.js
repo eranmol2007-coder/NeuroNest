@@ -22,17 +22,7 @@ export default defineConfig({
         ],
       },
       workbox: {
-        runtimeCaching: [
-          {
-            urlPattern: ({ url }) => url.pathname.startsWith('/api/'),
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'neuronest-api-cache',
-              networkTimeoutSeconds: 4,
-              cacheableResponse: { statuses: [0, 200] },
-            },
-          },
-        ],
+        runtimeCaching: [],
       },
     }),
   ],

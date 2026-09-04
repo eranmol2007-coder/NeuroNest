@@ -15,6 +15,8 @@ function getModels() {
     Reminder: require('../models/Reminder'),
     Alert: require('../models/Alert'),
     MoodCheckin: require('../models/MoodCheckin'),
+    User: require('../models/User'),
+    Otp: require('../models/Otp'),
   };
 }
 

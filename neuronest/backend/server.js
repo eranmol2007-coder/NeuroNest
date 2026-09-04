@@ -17,6 +17,7 @@ const reminderRoutes = require('./routes/reminderRoutes');
 const alertRoutes = require('./routes/alertRoutes');
 const moodRoutes = require('./routes/moodRoutes');
 const voiceRoutes = require('./routes/voiceRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 
@@ -51,6 +52,7 @@ app.use('/api/scores', scoreRoutes);
 app.use('/api/reminders', reminderRoutes);
 app.use('/api/alerts', alertRoutes);
 app.use('/api/moods', moodRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/voice', voiceRoutes);
 
 // SPA fallback
@@ -66,6 +68,41 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 
+function killPort(port) {
+  try {
+    const { execSync } = require('child_process');
+    const result = execSync(`netstat -ano | findstr :${port} | findstr LISTENING`, { encoding: 'utf8' });
+    const lines = result.trim().split('\n');
+    for (const line of lines) {
+      const parts = line.trim().split(/\s+/);
+      const pid = parts[parts.length - 1];
+      if (pid && pid !== '0') {
+        try { execSync(`taskkill /F /PID ${pid}`); } catch (e) {}
+      }
+    }
+  } catch (e) {}
+}
+
+function startServer(retries = 3) {
+  const server = app.listen(PORT, () => {
+    const mode = 'In-Memory';
+    console.log(`\n  NeuroNest running at http://localhost:${PORT}  [${mode}]\n`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && retries > 0) {
+      console.log(`  Port ${PORT} in use, killing old process...`);
+      killPort(PORT);
+      setTimeout(() => {
+        startServer(retries - 1);
+      }, 2000);
+    } else {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+}
+
 async function start() {
   const dbConnected = await connectDB();
 
@@ -76,10 +113,7 @@ async function start() {
     setMemoryMode(false);
   }
 
-  app.listen(PORT, () => {
-    const mode = dbConnected ? 'MongoDB' : 'In-Memory';
-    console.log(`\n  NeuroNest running at http://localhost:${PORT}  [${mode}]\n`);
-  });
+  startServer();
 }
 
 start();

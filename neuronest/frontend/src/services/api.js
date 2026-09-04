@@ -67,7 +67,9 @@ export const caregiversApi = {
   create: (data) => api.post('/api/caregivers', data),
   getAll: () => api.get('/api/caregivers'),
   getById: (id) => api.get(`/api/caregivers/${id}`),
+  findByIdentifier: (identifier) => api.get(`/api/caregivers/find/${encodeURIComponent(identifier)}`),
   update: (id, data) => api.put(`/api/caregivers/${id}`, data),
+  linkPatient: (id, patientId) => api.put(`/api/caregivers/${id}/link`, { patientId }),
   getDashboard: (id) => api.get(`/api/caregivers/${id}/dashboard`),
 };
 
@@ -102,5 +104,18 @@ export const moodsApi = {
 
 export const voiceApi = {
   command: (data) => api.post('/api/voice/command', data),
+};
+
+function authRequest(path, options = {}) {
+  const token = localStorage.getItem('neuronest_token');
+  const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+  if (token) headers['Authorization'] = `Bearer ${token}`;
+  return request(`${BASE_URL}${path}`, { ...options, headers });
+}
+
+export const authApi = {
+  sendOtp: (identifier, purpose) => authRequest('/api/auth/send-otp', { method: 'POST', body: JSON.stringify({ identifier, purpose }) }),
+  verifyOtp: (data) => authRequest('/api/auth/verify-otp', { method: 'POST', body: JSON.stringify(data) }),
+  getMe: () => authRequest('/api/auth/me'),
 };
 
