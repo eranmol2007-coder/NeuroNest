@@ -1,0 +1,576 @@
+import React, { useState, useEffect, useCallback, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { usePatient } from '../context/PatientContext.jsx';
+import { useTranslation } from '../context/LanguageContext.jsx';
+import { reminiscenceApi } from '../services/api';
+import { cacheGet, cacheSet } from '../services/offlineSync';
+import Animated3DBackground from '../components/ui/Animated3DBackground.jsx';
+
+const MOODS = [
+  { key: 'relaxed', icon: '😌', label: 'Relaxed', color: '#10b981' },
+  { key: 'happy', icon: '😊', label: 'Happy', color: '#3b82f6' },
+  { key: 'nostalgic', icon: '🥹', label: 'Nostalgic', color: '#f59e0b' },
+  { key: 'emotional', icon: '😭', label: 'Emotional', color: '#8b5cf6' },
+  { key: 'calm', icon: '🧘', label: 'Calm', color: '#6b7280' },
+];
+
+const VOICE_OPTIONS = [
+  { lang: 'en-US', label: 'English' },
+  { lang: 'hi-IN', label: 'Hindi' },
+  { lang: 'ta-IN', label: 'Tamil' },
+  { lang: 'te-IN', label: 'Telugu' },
+  { lang: 'bn-IN', label: 'Bengali' },
+  { lang: 'mr-IN', label: 'Marathi' },
+  { lang: 'gu-IN', label: 'Gujarati' },
+  { lang: 'kn-IN', label: 'Kannada' },
+  { lang: 'ml-IN', label: 'Malayalam' },
+];
+
+const FALLBACK_THEMES = [
+  {
+    key: 'childhood_home',
+    title: 'My Childhood Home',
+    icon: '🏡',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=900',
+    color: '#7a9a7a',
+    description: 'Relive the warmth and comfort of the home where your journey began.',
+    chapterCount: 4,
+  },
+  {
+    key: 'school_days',
+    title: 'School Days',
+    icon: '🏫',
+    image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=900',
+    color: '#3b82f6',
+    description: 'Walk the corridors of your school and revisit the lessons that shaped you.',
+    chapterCount: 4,
+  },
+  {
+    key: 'family_festival',
+    title: 'Family Festivals',
+    icon: '🎉',
+    image: 'https://images.unsplash.com/photo-1530025809667-1ac456d23238?q=80&w=900',
+    color: '#f59e0b',
+    description: 'Revisit the joy and togetherness of your family celebrations.',
+    chapterCount: 4,
+  },
+  {
+    key: 'first_job',
+    title: 'First Job Days',
+    icon: '💼',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900',
+    color: '#8b5cf6',
+    description: 'Step back into the days when your professional journey first began.',
+    chapterCount: 4,
+  },
+  {
+    key: 'wedding_memories',
+    title: 'Wedding Memories',
+    icon: '💒',
+    image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900',
+    color: '#ec4899',
+    description: 'Relive the magical moments from your special day.',
+    chapterCount: 4,
+  },
+  {
+    key: 'nature_walks',
+    title: 'Nature Walks',
+    icon: '🌿',
+    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900',
+    color: '#10b981',
+    description: 'Walk through the forests and fields that brought you peace.',
+    chapterCount: 4,
+  },
+];
+
+const FALLBACK_STORIES = {
+  childhood_home: {
+    chapters: [
+      { title: 'The Front Door', text: 'The old wooden front door of your family home stands before you. You can almost feel the familiar grain under your fingertips as you reach for the handle. The paint has faded slightly over the years, but it still opens with the same gentle creak you remember. A wave of warmth washes over you as you step inside.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=900' },
+      { title: 'The Kitchen', text: 'The kitchen is alive with the aroma of your favorite meal. Sunlight streams through the window, casting golden patches on the worn wooden table where the family gathered every evening. You can hear the soft hum of the radio playing old songs, and somewhere nearby, a kettle begins to whistle.', image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=900' },
+      { title: 'The Backyard', text: 'You push open the screen door and step into the backyard. The mango tree still stands tall, its branches heavy with fruit. The swing set your father built for you sways gently in the breeze. Grass tickles your bare feet as you walk to your favorite spot under the tree, where the world always felt safe.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=900' },
+      { title: 'Your Room', text: 'Climbing the familiar stairs, each step creaking in a different tone, you reach your old room. The door is slightly ajar. Inside, everything is just as you left it. The faded posters on the wall, the books stacked on the shelf, the small window overlooking the garden. You sit on the bed and feel the memories flood back.', image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?q=80&w=900' },
+    ],
+  },
+  school_days: {
+    chapters: [
+      { title: 'The School Gate', text: 'You stand at the familiar school gate, the iron bars worn smooth by decades of students. The morning sun paints long shadows across the courtyard. You can hear children laughing and the distant sound of a school bell. Your feet remember every crack in the path leading to the main building.', image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=900' },
+      { title: 'The Classroom', text: 'You step into your old classroom. The wooden desks are arranged in neat rows, each one carrying the carved initials of generations of students. The blackboard is freshly chalked. You find your seat by the window — the one where you used to watch clouds drift by during math lessons.', image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=900' },
+      { title: 'The Playground', text: 'The playground echoes with phantom laughter. You can almost see your younger self running across the field, chasing friends with boundless energy. The old football goalpost still stands at one end. You remember the day you scored the winning goal and the entire school cheered your name.', image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=900' },
+      { title: 'The Library', text: 'The library is a sanctuary of quiet wisdom. Dust motes dance in the shafts of light that filter through tall windows. You run your fingers along the spines of books, each one a door to another world. You remember the first book that changed your life, the one you read cover to cover under this very roof.', image: 'https://images.unsplash.com/photo-1580582932707-520aed937b7b?q=80&w=900' },
+    ],
+  },
+  family_festival: {
+    chapters: [
+      { title: 'Preparing for the Festival', text: 'The house is bustling with preparation. Colorful decorations are being hung, the kitchen is filled with the delicious smell of festive sweets, and laughter echoes from every corner. You remember how everyone had a role — your job was always to string the marigold garlands.', image: 'https://images.unsplash.com/photo-1530025809667-1ac456d23238?q=80&w=900' },
+      { title: 'The Family Gathering', text: 'The entire family has gathered together. Grandparents sitting on the porch, children running around with sparklers, cousins sharing stories from the year. The house is overflowing with love and warmth. You look around the table and feel a deep sense of gratitude for each person present.', image: 'https://images.unsplash.com/photo-1530025809667-1ac456d23238?q=80&w=900' },
+      { title: 'The Evening Celebration', text: 'As the sun sets, the festival truly comes alive. Lamps are lit one by one, casting a warm golden glow across the courtyard. Music fills the air, and people begin to dance. You join in, clapping and swaying to rhythms that your body remembers even if your mind sometimes forgets.', image: 'https://images.unsplash.com/photo-1530025809667-1ac456d23238?q=80&w=900' },
+      { title: 'The Quiet Moment', text: 'Later in the evening, you find a quiet moment. You sit on the doorstep, looking up at the sky. Fireflies dance in the garden. The distant sound of celebration continues, but here, in this moment, everything is peaceful. You feel the presence of loved ones, both near and far, wrapping you in warmth.', image: 'https://images.unsplash.com/photo-1530025809667-1ac456d23238?q=80&w=900' },
+    ],
+  },
+  first_job: {
+    chapters: [
+      { title: 'The First Morning', text: 'You wake up extra early, heart pounding with excitement and nervous energy. Your best clothes are laid out on the bed. You eat a quick breakfast, kiss your mother goodbye, and step out into the world with a new sense of purpose. Today is your first day of work.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900' },
+      { title: 'The Workplace', text: 'The office building towers before you, impressive and a little intimidating. You push through the glass doors and are greeted by friendly faces. Your desk is small but yours. You organize your things carefully, taking in every detail. This is where your story unfolds.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900' },
+      { title: 'Meeting Colleagues', text: 'Your colleagues welcome you with warm handshakes and genuine smiles. Over chai breaks, you learn their stories — each one on their own unique journey. A kind mentor takes you under their wing, showing you the ropes with patience and encouragement. You feel at home.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900' },
+      { title: 'First Achievement', text: 'At the end of your first week, your supervisor calls you into their office. Instead of criticism, you receive praise. "You have a natural talent for this," they say. Walking home that evening, the setting sun paints the sky in gold, and you carry that warmth inside you like a promise.', image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=900' },
+    ],
+  },
+  wedding_memories: {
+    chapters: [
+      { title: 'The Morning Preparations', text: 'The house is alive with excitement. The scent of jasmine and marigold fills every room. Family members bustle about, making final preparations. You sit before a mirror as loving hands help you dress in your finest, each piece of clothing carrying blessings and love.', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900' },
+      { title: 'The Procession', text: 'The music starts and the celebration begins. You emerge to the cheers of family and friends. The colors are vibrant — saffron, red, gold — painting a scene of pure joy. Every face you see is beaming with happiness, and the air itself seems to vibrate with love.', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900' },
+      { title: 'The Ceremony', text: 'Time seems to stand still during the ceremony. The sacred flames flicker gently as you take your vows. The world narrows down to just this moment — the promises you make, the circles you walk, the blessings that rain down upon you like flowers from heaven.', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900' },
+      { title: 'The Celebration', text: 'The feast is magnificent. The hall is filled with the aroma of delicacies and the sound of joyful conversations. You move from table to table, embracing loved ones, sharing laughter and tears of joy. Every dish is prepared with love, every smile a blessing.', image: 'https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=900' },
+    ],
+  },
+  nature_walks: {
+    chapters: [
+      { title: 'The Forest Path', text: 'The trail begins at the edge of the forest, where tall trees stand like ancient guardians. The canopy above filters sunlight into dancing patterns on the forest floor. Each step on the soft earth feels like a conversation with nature. Birds call to each other in melodies you almost recognize.', image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900' },
+      { title: 'The River', text: 'You follow the sound of water and find the river winding through a clearing. Its surface sparkles in the afternoon light. You remember coming here as a child, skipping stones across the water and watching them disappear beneath the surface. The river is the same, and so is the peace it brings.', image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900' },
+      { title: 'The Meadow', text: 'The forest opens into a vast meadow blanketed with wildflowers. The fragrance of grass and blossoms fills the air. You lie down and look up at the sky — a canvas of blue interrupted only by lazy, drifting clouds. A butterfly lands on your hand, its wings gentle as a whisper.', image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900' },
+      { title: 'Sunset Ridge', text: 'As evening approaches, you reach the ridge. The world spreads out before you in every direction. The sun begins its descent, painting the horizon in shades of amber and rose. You sit in silence, feeling the cool breeze on your face. In this moment, everything is exactly as it should be.', image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?q=80&w=900' },
+    ],
+  },
+};
+
+export default function ReminiscencePage() {
+  const { patient } = usePatient();
+  const { t } = useTranslation();
+  const navigate = useNavigate();
+
+  const [themes, setThemes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [selectedTheme, setSelectedTheme] = useState(null);
+  const [currentChapter, setCurrentChapter] = useState(0);
+  const [storyData, setStoryData] = useState(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showMoodCheck, setShowMoodCheck] = useState(false);
+  const [moodBefore, setMoodBefore] = useState(null);
+  const [moodAfter, setMoodAfter] = useState(null);
+  const [voiceLang, setVoiceLang] = useState('en-US');
+  const [autoPlay, setAutoPlay] = useState(false);
+  const [fontSize, setFontSize] = useState('medium');
+  const [completedChapters, setCompletedChapters] = useState([]);
+  const [showCompletion, setShowCompletion] = useState(false);
+
+  const textRef = useRef(null);
+  const synthRef = useRef(typeof window !== 'undefined' ? window.speechSynthesis : null);
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true);
+      try {
+        const res = await reminiscenceApi.getThemes();
+        setThemes(res.data);
+        await cacheSet('reminiscence_themes', res.data);
+      } catch {
+        const cached = await cacheGet('reminiscence_themes');
+        setThemes(cached || FALLBACK_THEMES);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, []);
+
+  const loadStory = useCallback(async (themeKey) => {
+    try {
+      const res = await reminiscenceApi.generateStory({
+        themeKey,
+        patientId: patient?._id,
+      });
+      setStoryData(res.data);
+    } catch {
+      const fallback = FALLBACK_STORIES[themeKey];
+      if (fallback) {
+        const themeInfo = (themes.length ? themes : FALLBACK_THEMES).find(t => t.key === themeKey);
+        setStoryData({
+          theme: themeKey,
+          title: themeInfo?.title || themeKey,
+          icon: themeInfo?.icon || '📖',
+          chapters: fallback.chapters.map((ch, idx) => ({ ...ch, index: idx })),
+        });
+      }
+    }
+    setCurrentChapter(0);
+    setCompletedChapters([]);
+    setShowCompletion(false);
+    setMoodAfter(null);
+  }, [patient, themes]);
+
+  const handleThemeSelect = async (theme) => {
+    setSelectedTheme(theme);
+    await loadStory(theme.key);
+  };
+
+  const stopSpeech = useCallback(() => {
+    if (synthRef.current) {
+      synthRef.current.cancel();
+    }
+    setIsPlaying(false);
+  }, []);
+
+  const speakText = useCallback((text) => {
+    if (!synthRef.current) return;
+    synthRef.current.cancel();
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = voiceLang;
+    utterance.rate = 0.85;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+
+    const voices = synthRef.current.getVoices();
+    const matching = voices.find(v => v.lang === voiceLang);
+    if (matching) utterance.voice = matching;
+
+    utterance.onend = () => {
+      setIsPlaying(false);
+      if (autoPlay && storyData && currentChapter < storyData.chapters.length - 1) {
+        setTimeout(() => {
+          setCurrentChapter(prev => {
+            const next = prev + 1;
+            setCompletedChapters(p => [...new Set([...p, prev])]);
+            return next;
+          });
+        }, 2000);
+      } else if (storyData && currentChapter === storyData.chapters.length - 1) {
+        setCompletedChapters(p => [...new Set([...p, currentChapter])]);
+        setShowMoodCheck(true);
+      }
+    };
+
+    utterance.onerror = () => {
+      setIsPlaying(false);
+    };
+
+    synthRef.current.speak(utterance);
+    setIsPlaying(true);
+
+    if (storyData) {
+      reminiscenceApi.recordInteraction({
+        themeKey: storyData.theme,
+        interactionType: 'listen',
+        chapterIndex: currentChapter,
+      }).catch(() => {});
+    }
+  }, [voiceLang, autoPlay, storyData, currentChapter]);
+
+  const handlePlayPause = () => {
+    if (isPlaying) {
+      stopSpeech();
+    } else if (storyData?.chapters?.[currentChapter]) {
+      speakText(storyData.chapters[currentChapter].text);
+    }
+  };
+
+  const handleNext = () => {
+    stopSpeech();
+    if (storyData && currentChapter < storyData.chapters.length - 1) {
+      setCompletedChapters(p => [...new Set([...p, currentChapter])]);
+      setCurrentChapter(prev => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    stopSpeech();
+    if (currentChapter > 0) {
+      setCurrentChapter(prev => prev - 1);
+    }
+  };
+
+  const handleChapterClick = (idx) => {
+    stopSpeech();
+    setCurrentChapter(idx);
+  };
+
+  const handleMoodSubmit = async (mood) => {
+    if (!moodBefore) {
+      setMoodBefore(mood);
+    } else {
+      setMoodAfter(mood);
+      setShowMoodCheck(false);
+      setShowCompletion(true);
+      try {
+        await reminiscenceApi.recordInteraction({
+          themeKey: storyData?.theme,
+          interactionType: 'mood_after',
+          chapterIndex: currentChapter,
+        });
+      } catch {}
+    }
+  };
+
+  const handleBack = () => {
+    stopSpeech();
+    setSelectedTheme(null);
+    setStoryData(null);
+    setCurrentChapter(0);
+    setCompletedChapters([]);
+    setShowCompletion(false);
+    setShowMoodCheck(false);
+    setMoodBefore(null);
+    setMoodAfter(null);
+  };
+
+  useEffect(() => {
+    return () => stopSpeech();
+  }, [stopSpeech]);
+
+  useEffect(() => {
+    if (textRef.current) {
+      textRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }, [currentChapter]);
+
+  const fontSizeMap = { small: '0.95rem', medium: '1.1rem', large: '1.3rem' };
+  const chapter = storyData?.chapters?.[currentChapter];
+  const totalChapters = storyData?.chapters?.length || 0;
+
+  if (loading) {
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-container">
+          <div className="reminiscence-loading">
+            <div className="reminiscence-spinner" />
+            <p>Preparing your stories...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (!selectedTheme) {
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-container">
+          <div className="reminiscence-hero">
+            <div className="reminiscence-hero-content">
+              <p className="home-card-eyebrow">Reminiscence Therapy</p>
+              <h1 className="page-title">Interactive Storybooks</h1>
+              <p className="page-subtitle">
+                AI-generated personalized stories based on your life experiences.
+                Choose a theme to begin your journey back in time.
+              </p>
+            </div>
+          </div>
+
+          <div className="reminiscence-themes-grid">
+            {themes.map((theme) => (
+              <button
+                key={theme.key}
+                className="reminiscence-theme-card"
+                onClick={() => handleThemeSelect(theme)}
+                style={{ '--theme-color': theme.color }}
+              >
+                <div className="reminiscence-theme-image">
+                  <img src={theme.image} alt={theme.title} />
+                  <div className="reminiscence-theme-overlay" />
+                  <span className="reminiscence-theme-icon">{theme.icon}</span>
+                </div>
+                <div className="reminiscence-theme-body">
+                  <h3 className="reminiscence-theme-title">{theme.title}</h3>
+                  <p className="reminiscence-theme-desc">{theme.description}</p>
+                  <div className="reminiscence-theme-meta">
+                    <span>{theme.chapterCount || 4} chapters</span>
+                    <span className="reminiscence-theme-arrow">→</span>
+                  </div>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (showCompletion) {
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-container">
+          <div className="reminiscence-completion">
+            <div className="reminiscence-completion-card">
+              <span className="reminiscence-completion-icon">{storyData?.icon || '📖'}</span>
+              <h2>Journey Complete</h2>
+              <p className="reminiscence-completion-text">
+                Thank you for revisiting your memories. Stories like these help keep our most
+                cherished moments alive. The feelings you experienced today are a beautiful
+                part of who you are.
+              </p>
+              {moodBefore && moodAfter && (
+                <div className="reminiscence-mood-summary">
+                  <div className="reminiscence-mood-item">
+                    <span className="reminiscence-mood-label">Mood Before</span>
+                    <span className="reminiscence-mood-value">
+                      {MOODS.find(m => m.key === moodBefore)?.icon} {MOODS.find(m => m.key === moodBefore)?.label}
+                    </span>
+                  </div>
+                  <div className="reminiscence-mood-arrow">→</div>
+                  <div className="reminiscence-mood-item">
+                    <span className="reminiscence-mood-label">Mood After</span>
+                    <span className="reminiscence-mood-value">
+                      {MOODS.find(m => m.key === moodAfter)?.icon} {MOODS.find(m => m.key === moodAfter)?.label}
+                    </span>
+                  </div>
+                </div>
+              )}
+              <div className="reminiscence-completion-actions">
+                <button className="btn-green" onClick={handleBack}>
+                  Explore More Stories
+                </button>
+                <button className="btn-glass" onClick={() => { handleBack(); navigate('/home'); }}>
+                  Return Home
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (showMoodCheck) {
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-container">
+          <div className="reminiscence-mood-check">
+            <div className="reminiscence-mood-card">
+              <span className="reminiscence-mood-big-icon">💭</span>
+              <h2>{!moodBefore ? 'How are you feeling right now?' : 'And now, how do you feel after the story?'}</h2>
+              <div className="reminiscence-mood-grid">
+                {MOODS.map((mood) => (
+                  <button
+                    key={mood.key}
+                    className="reminiscence-mood-btn"
+                    onClick={() => handleMoodSubmit(mood.key)}
+                    style={{ '--mood-color': mood.color }}
+                  >
+                    <span className="reminiscence-mood-btn-icon">{mood.icon}</span>
+                    <span className="reminiscence-mood-btn-label">{mood.label}</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="reminiscence-page">
+      <Animated3DBackground />
+
+      <div className="reminiscence-story-container">
+        <div className="reminiscence-story-header">
+          <button className="reminiscence-back-btn" onClick={handleBack}>
+            ← Back to Stories
+          </button>
+          <div className="reminiscence-story-controls">
+            <select
+              className="reminiscence-voice-select"
+              value={voiceLang}
+              onChange={(e) => setVoiceLang(e.target.value)}
+            >
+              {VOICE_OPTIONS.map(v => (
+                <option key={v.lang} value={v.lang}>{v.label}</option>
+              ))}
+            </select>
+            <button
+              className={`reminiscence-auto-btn ${autoPlay ? 'active' : ''}`}
+              onClick={() => setAutoPlay(!autoPlay)}
+            >
+              {autoPlay ? '⏸ Auto' : '▶ Auto'}
+            </button>
+            <select
+              className="reminiscence-font-select"
+              value={fontSize}
+              onChange={(e) => setFontSize(e.target.value)}
+            >
+              <option value="small">Small</option>
+              <option value="medium">Medium</option>
+              <option value="large">Large</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="reminiscence-chapter-progress">
+          {storyData?.chapters?.map((_, idx) => (
+            <button
+              key={idx}
+              className={`reminiscence-progress-dot ${idx === currentChapter ? 'active' : ''} ${completedChapters.includes(idx) ? 'completed' : ''}`}
+              onClick={() => handleChapterClick(idx)}
+            >
+              {idx + 1}
+            </button>
+          ))}
+        </div>
+
+        {chapter && (
+          <div className="reminiscence-chapter-viewer">
+            <div className="reminiscence-chapter-image-container">
+              <img
+                src={chapter.image}
+                alt={chapter.title}
+                className="reminiscence-chapter-image"
+              />
+              <div className="reminiscence-chapter-image-overlay" />
+              <div className="reminiscence-chapter-image-title">
+                <span className="reminiscence-chapter-number">
+                  Chapter {currentChapter + 1} of {totalChapters}
+                </span>
+                <h2 className="reminiscence-chapter-heading">{chapter.title}</h2>
+              </div>
+            </div>
+
+            <div className="reminiscence-chapter-content" ref={textRef}>
+              <p
+                className="reminiscence-chapter-text"
+                style={{ fontSize: fontSizeMap[fontSize] }}
+              >
+                {chapter.text}
+              </p>
+
+              <div className="reminiscence-chapter-actions">
+                <button
+                  className="reminiscence-play-btn"
+                  onClick={handlePlayPause}
+                >
+                  {isPlaying ? '⏸ Pause' : '🔊 Read Aloud'}
+                </button>
+              </div>
+            </div>
+
+            <div className="reminiscence-chapter-nav">
+              <button
+                className="reminiscence-nav-btn"
+                onClick={handlePrev}
+                disabled={currentChapter === 0}
+              >
+                ← Previous
+              </button>
+              <span className="reminiscence-nav-page">
+                {currentChapter + 1} / {totalChapters}
+              </span>
+              <button
+                className="reminiscence-nav-btn"
+                onClick={() => {
+                  setCompletedChapters(p => [...new Set([...p, currentChapter])]);
+                  handleNext();
+                }}
+                disabled={currentChapter === totalChapters - 1}
+              >
+                Next →
+              </button>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}

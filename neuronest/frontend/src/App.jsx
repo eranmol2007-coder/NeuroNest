@@ -14,6 +14,7 @@ import GamesPage from './pages/GamesPage.jsx';
 import RemindersPage from './pages/RemindersPage.jsx';
 import CaregiverPage from './pages/CaregiverPage.jsx';
 import SettingsPage from './pages/SettingsPage.jsx';
+import ReminiscencePage from './pages/ReminiscencePage.jsx';
 import MemoryMatchGame from './games/MemoryMatchGame.jsx';
 import PatternRecognitionGame from './games/PatternRecognitionGame.jsx';
 import DailyRoutineRecallGame from './games/DailyRoutineRecallGame.jsx';
@@ -68,6 +69,7 @@ export default function App() {
             <Route path="/games/pattern-recognition" element={<RequireAuth><RequirePatient><PatternRecognitionGame /></RequirePatient></RequireAuth>} />
             <Route path="/games/daily-routine-recall" element={<RequireAuth><RequirePatient><DailyRoutineRecallGame /></RequirePatient></RequireAuth>} />
             <Route path="/reminders" element={<RequireAuth><RequirePatient><RemindersPage /></RequirePatient></RequireAuth>} />
+            <Route path="/reminiscence" element={<RequireAuth><RequirePatient><ReminiscencePage /></RequirePatient></RequireAuth>} />
             <Route path="/caregiver" element={<RequireAuth><RequirePatient><CaregiverPage /></RequirePatient></RequireAuth>} />
             <Route path="/settings" element={<RequireAuth><RequirePatient><SettingsPage /></RequirePatient></RequireAuth>} />
             <Route path="*" element={<Navigate to="/" replace />} />

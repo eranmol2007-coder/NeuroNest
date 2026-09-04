@@ -106,6 +106,15 @@ export const voiceApi = {
   command: (data) => api.post('/api/voice/command', data),
 };
 
+export const reminiscenceApi = {
+  getThemes: () => api.get('/api/reminiscence/themes'),
+  generateStory: (data) => api.post('/api/reminiscence/story', data),
+  getChapter: (themeKey, chapterIndex, patientId) =>
+    api.get(`/api/reminiscence/chapter/${themeKey}/${chapterIndex}${patientId ? `?patientId=${patientId}` : ''}`),
+  recordInteraction: (data) => api.post('/api/reminiscence/interaction', data),
+  getProgress: (patientId) => api.get(`/api/reminiscence/progress/${patientId}`),
+};
+
 function authRequest(path, options = {}) {
   const token = localStorage.getItem('neuronest_token');
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };

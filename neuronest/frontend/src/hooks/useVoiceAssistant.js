@@ -35,6 +35,7 @@ const NAV_COMMANDS = [
   { pattern: /setting|preference/i, target: '/settings', label: 'Settings', simplifiedKey: null },
   { pattern: /home|dashboard|main|wapas|back/i, target: '/home', label: 'Dashboard', simplifiedKey: null },
   { pattern: /caregiver|carer/i, target: '/caregiver', label: 'Caregiver', simplifiedKey: null },
+  { pattern: /reminisce|story|stories|memories|yaadein|kahaani/i, target: '/reminiscence', label: 'Reminiscence Therapy', simplifiedKey: 'open_story' },
   { pattern: /help|assist|sahay|madad/i, target: null, label: null, simplifiedKey: 'help' },
   { pattern: /mood|feel|feeling|kaisa|lag/i, target: '/home', label: 'mood check-in', simplifiedKey: null },
 ];

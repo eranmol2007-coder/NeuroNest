@@ -85,6 +85,7 @@ export default function NavBar() {
         {user ? (
           <nav className="nav-links" aria-label="Main navigation">
             <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
+            <NavLink to="/reminiscence" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>Stories</NavLink>
             <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
             <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
             <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
