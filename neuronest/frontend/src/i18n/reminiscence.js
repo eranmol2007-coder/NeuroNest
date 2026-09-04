@@ -34,6 +34,44 @@ const STORY_I18N = {
       wedding_memories: ['The Morning Preparations', 'The Procession', 'The Ceremony', 'The Celebration'],
       nature_walks: ['The Forest Path', 'The River', 'The Meadow', 'Sunset Ridge'],
     },
+    chapter_texts: {
+      childhood_home: [
+        'The old wooden front door of your family home stands before you. You can almost feel the familiar grain under your fingertips as you reach for the handle. The paint has faded slightly over the years, but it still opens with the same gentle creak you remember. A wave of warmth washes over you as you step inside.',
+        'The kitchen is alive with the aroma of your favorite meal. Sunlight streams through the window, casting golden patches on the worn wooden table where the family gathered every evening. You can hear the soft hum of the radio playing old songs, and somewhere nearby, a kettle begins to whistle.',
+        'You push open the screen door and step into the backyard. The mango tree still stands tall, its branches heavy with fruit. The swing set your father built for you sways gently in the breeze. Grass tickles your bare feet as you walk to your favorite spot under the tree, where the world always felt safe.',
+        'Climbing the familiar stairs, each step creaking in a different tone, you reach your old room. The door is slightly ajar. Inside, everything is just as you left it. The faded posters on the wall, the books stacked on the shelf, the small window overlooking the garden. You sit on the bed and feel the memories flood back.',
+      ],
+      school_days: [
+        'You stand at the familiar school gate, the iron bars worn smooth by decades of students. The morning sun paints long shadows across the courtyard. You can hear children laughing and the distant sound of a school bell. Your feet remember every crack in the path leading to the main building.',
+        'You step into your old classroom. The wooden desks are arranged in neat rows, each one carrying the carved initials of generations of students. The blackboard is freshly chalked. You find your seat by the window, the one where you used to watch clouds drift by during math lessons.',
+        'The playground echoes with phantom laughter. You can almost see your younger self running across the field, chasing friends with boundless energy. The old football goalpost still stands at one end. You remember the day you scored the winning goal and the entire school cheered your name.',
+        'The library is a sanctuary of quiet wisdom. Dust motes dance in the shafts of light that filter through tall windows. You run your fingers along the spines of books, each one a door to another world. You remember the first book that changed your life, the one you read cover to cover under this very roof.',
+      ],
+      family_festival: [
+        'The house is bustling with preparation. Colorful decorations are being hung, the kitchen is filled with the delicious smell of festive sweets, and laughter echoes from every corner. You remember how everyone had a role, your job was always to string the marigold garlands.',
+        'The entire family has gathered together. Grandparents sitting on the porch, children running around with sparklers, cousins sharing stories from the year. The house is overflowing with love and warmth. You look around the table and feel a deep sense of gratitude for each person present.',
+        'As the sun sets, the festival truly comes alive. Lamps are lit one by one, casting a warm golden glow across the courtyard. Music fills the air, and people begin to dance. You join in, clapping and swaying to rhythms that your body remembers even if your mind sometimes forgets.',
+        'Later in the evening, you find a quiet moment. You sit on the doorstep, looking up at the sky. Fireflies dance in the garden. The distant sound of celebration continues, but here, in this moment, everything is peaceful. You feel the presence of loved ones, both near and far, wrapping you in warmth.',
+      ],
+      first_job: [
+        'You wake up extra early, heart pounding with excitement and nervous energy. Your best clothes are laid out on the bed. You eat a quick breakfast, kiss your mother goodbye, and step out into the world with a new sense of purpose. Today is your first day of work.',
+        'The office building towers before you, impressive and a little intimidating. You push through the glass doors and are greeted by friendly faces. Your desk is small but yours. You organize your things carefully, taking in every detail. This is where your story unfolds.',
+        'Your colleagues welcome you with warm handshakes and genuine smiles. Over chai breaks, you learn their stories, each one on their own unique journey. A kind mentor takes you under their wing, showing you the ropes with patience and encouragement. You feel at home.',
+        'At the end of your first week, your supervisor calls you into their office. Instead of criticism, you receive praise. You have a natural talent for this, they say. Walking home that evening, the setting sun paints the sky in gold, and you carry that warmth inside you like a promise.',
+      ],
+      wedding_memories: [
+        'The house is alive with excitement. The scent of jasmine and marigold fills every room. Family members bustle about, making final preparations. You sit before a mirror as loving hands help you dress in your finest, each piece of clothing carrying blessings and love.',
+        'The music starts and the celebration begins. You emerge to the cheers of family and friends. The colors are vibrant, saffron, red, gold, painting a scene of pure joy. Every face you see is beaming with happiness, and the air itself seems to vibrate with love.',
+        'Time seems to stand still during the ceremony. The sacred flames flicker gently as you take your vows. The world narrows down to just this moment, the promises you make, the circles you walk, the blessings that rain down upon you like flowers from heaven.',
+        'The feast is magnificent. The hall is filled with the aroma of delicacies and the sound of joyful conversations. You move from table to table, embracing loved ones, sharing laughter and tears of joy. Every dish is prepared with love, every smile a blessing.',
+      ],
+      nature_walks: [
+        'The trail begins at the edge of the forest, where tall trees stand like ancient guardians. The canopy above filters sunlight into dancing patterns on the forest floor. Each step on the soft earth feels like a conversation with nature. Birds call to each other in melodies you almost recognize.',
+        'You follow the sound of water and find the river winding through a clearing. Its surface sparkles in the afternoon light. You remember coming here as a child, skipping stones across the water and watching them disappear beneath the surface. The river is the same, and so is the peace it brings.',
+        'The forest opens into a vast meadow blanketed with wildflowers. The fragrance of grass and blossoms fills the air. You lie down and look up at the sky, a canvas of blue interrupted only by lazy, drifting clouds. A butterfly lands on your hand, its wings gentle as a whisper.',
+        'As evening approaches, you reach the ridge. The world spreads out before you in every direction. The sun begins its descent, painting the horizon in shades of amber and rose. You sit in silence, feeling the cool breeze on your face. In this moment, everything is exactly as it should be.',
+      ],
+    },
   },
   Hindi: {
     page_title: 'इंटरैक्टिव कहानी किताबें',
@@ -69,6 +107,44 @@ const STORY_I18N = {
       first_job: ['पहली सुबह', 'कार्यस्थल', 'सहकर्मियों से मिलना', 'पहली उपलब्धि'],
       wedding_memories: ['सुबह की तैयारियाँ', 'जुलूस', 'समारोह', 'उत्सव'],
       nature_walks: ['जंगल का रास्ता', 'नदी', 'घास का मैदान', 'सूर्यास्त की चोटी'],
+    },
+    chapter_texts: {
+      childhood_home: [
+        'आपके पारिवारिक घर का पुराना लकड़ी का मुख्य दरवाज़ा आपके सामने खड़ा है। जब आप हैंडल की ओर हाथ बढ़ाते हैं, तो आप लगभग अपनी उंगलियों के नीचे परिचित अनाज महसूस कर सकते हैं। सालों से पेंट थोड़ा फीका पड़ गया है, लेकिन यह अभी भी उसी धीमी सरसराहट के साथ खुलता है जो आपको याद है। अंदर कदम रखते ही गर्मी की एक लहर आप पर छा जाती है।',
+        'रसोई आपके पसंदीदा भोजन की खुशबू से जीवंत है। खिड़की से सूरज की रोशनी आती है, पुरानी लकड़ी की मेज पर सुनहरे धब्बे बनाती है जहाँ परिवार हर शाम इकट्ठा होता था। आप रेडियो पर पुराने गानों की धीमी गूंज सुन सकते हैं, और कहीं पास में एक बर्तनी सीटी बजाने लगती है।',
+        'आप स्क्रीन डोर को धक्का देकर पिछवाड़े में कदम रखते हैं। आम का पेड़ अभी भी ऊँचा खड़ा है, उसकी डालें फलों से भारी हैं। आपके पिता ने जो झूला बनाया था वो हवा में धीरे-धीरे झूल रहा है। घास आपके नंगे पैरों को गुदगुदाती है जब आप पेड़ के नीचे अपनी पसंदीदा जगह तक चलते हैं, जहाँ दुनहा हमेशा सुरक्षित महसूस होता था।',
+        'परिचित सीढ़ियों पर चढ़ते हुए, हर कदम एक अलग स्वर में सरसराता है, आप अपने पुराने कमरे तक पहुँचते हैं। दरवाज़ा थोड़ा खुला है। अंदर, सब कुछ वैसा ही है जैसा आपने छोड़ा था। दीवार पर फीके पोस्टर, शेल्फ पर किताबों का ढेर, बगीचे की ओर देखने वाली छोटी खिड़की। आप बिस्तर पर बैठ जाते हैं और यादें वापस आने लगती हैं।',
+      ],
+      school_days: [
+        'आप परिचित स्कूल गेट पर खड़े हैं, लोहे की सलाखें दशकों के छात्रों से घिसकर चिकनी हो गई हैं। सुबह का सूरज आंगन में लंबी छायाएँ बनाता है। आप बच्चों के हँसने और दूर स्कूल की घंटी की आवाज़ सुन सकते हैं। आपके पैर मुख्य भवन तक जाने वाले रास्ते की हर दरार याद रखते हैं।',
+        'आप अपनी पुरानी कक्षा में कदम रखते हैं। लकड़ी की मेजें सीधी कतारों में लगी हैं, हर एक पर पीढ़ियों के छात्रों के कटे हुए नामांकरण हैं। ब्लैकबोर्ड ताज़ा चॉक से लिखा है। आप खिड़की के पास अपनी सीट ढूंढते हैं, वही जहाँ आप गणित के पाठ के दौरान बादलों को बहते देखा करते थे।',
+        'खेल के मैदान में काल्पनिक हँसी गूंजती है। आप लगभग देख सकते हैं कि आपका छोटा रूप मैदान में दौड़ रहा है, असीम ऊर्जा से दोस्तों का पीछा कर रहा है। पुराना फुटबॉल गोलपोस्ट अभी भी एक छोर पर खड़ा है। आप उस दिन को याद करते हैं जब आपने विजयी गोल किया और पूरे स्कूल ने आपका नाम पुकारा।',
+        'पुस्तकालय शांत ज्ञान का अभयारण्य है। धूल के कण लंबी खिड़कियों से छनकर आने वाली रोशनी की किरणों में नाचते हैं। आप किताबों की रीढ़ पर अपनी उंगलियाँ फिराते हैं, हर एक एक और दुनिया का दरवाज़ा है। आप पहली किताब को याद करते हैं जिसने आपकी ज़िंदगी बदल दी, जिसे आपने इसी छत के नीचे शुरू से अंत तक पढ़ा था।',
+      ],
+      family_festival: [
+        'घर तैयारियों से भरा है। रंगीन सजावट लगाई जा रही है, रसोई त्योहारी मिठाइयों की स्वादिष्ट खुशबू से भरी है, और हर कोने से हँसी गूंज रही है। आपको याद है कि सबकी भूमिका होती थी, आपका काम हमेशा गेंदे की माला बनाना था।',
+        'पूरा परिवार इकट्ठा हो गया है। दादा-दादी बरामदे में बैठे हैं, बच्चे पटाखों के साथ दौड़ रहे हैं, चचेरे भाई-बहन साल भर की कहानियाँ साझा कर रहे हैं। घर प्यार और गर्मी से भरा है। आप मेज के चारों ओर देखते हैं और हर व्यक्ति के प्रति गहरी कृतज्ञता महसूस करते हैं।',
+        'जैसे ही सूरज डूबता है, त्योहार सच में जीवंत हो जाता है। दीये एक-एक करके जलाए जाते हैं, आंगन में गर्म सुनहरी रोशनी फैलाते हैं। हवा में संगीत भर जाता है, और लोग नाचने लगते हैं। आप भी शामिल हो जाते हैं, उन तालों पर ताली बजाते और झूमते हैं जो आपका शरीर याद रखता है भले ही दिमाग कभी-कभी भूल जाए।',
+        'शाम को बाद, आपको एक शांत पल मिलता है। आप दहलीज़ पर बैठकर आसमान की ओर देखते हैं। बगीचे में जुगनू नाचते हैं। दूर से उत्सव की आवाज़ जारी है, लेकिन यहाँ, इस पल में, सब कुछ शांत है। आप प्रियजनों की उपस्थिति महसूस करते हैं, पास और दूर दोनों, जो आपको गर्मी में लिपेटे हुए हैं।',
+      ],
+      first_job: [
+        'आप बहुत जल्दी उठते हैं, उत्साह और घबराहट से दिल धड़क रहा है। आपके सबसे अच्छे कपड़े बिस्तर पर रखे हैं। आप जल्दी से नाश्ता करते हैं, अपनी माँ को अलविदा चूमते हैं, और एक नए उद्देश्य के साथ दुनिया में कदम रखते हैं। आज आपका पहला दिन है।',
+        'कार्यालय भवन आपके सामने ऊँचा है, प्रभावशाली और थोड़ा डरावना। आप कांच के दरवाज़ों से गुज़रते हैं और मित्रवत चेहरों से स्वागत किया जाता है। आपकी मेज छोटी है लेकिन आपकी अपनी है। आप सावधानी से अपनी चीज़ें सजाते हैं, हर विवरण को ध्यान से देखते हुए। यहीं आपकी कहानी खुलती है।',
+        'आपके सहकर्मी आपका गर्म हाथ मिलाने और सच्ची मुस्कान से स्वागत करते हैं। चाय के ब्रेक में, आप उनकी कहानियाँ सीखते हैं, हर एक अपनी अनूठी यात्रा पर। एक दयालु संरक्षक आपको अपने पंखों के नीचे लेता है, धैर्य और प्रोत्साहन के साथ आपको रास्ता दिखाता है। आप घर जैसा महसूस करते हैं।',
+        'आपके पहले हफ्ते के अंत में, आपका पर्यवेक्षक आपको अपने कार्यालय में बुलाता है। आलोचना के बजाय, आपको प्रशंसा मिलती है। आपमें इसकी प्राकृतिक प्रतिभा है, वे कहते हैं। उस शाम घर चलते हुए, डूबता सूरज आसमान को सुनहरा रंग देता है, और आप वह गर्मी एक वादे की तरह अंदर ले जाते हैं।',
+      ],
+      wedding_memories: [
+        'घर उत्साह से जीवंत है। चमेली और गेंदे की खुशबू हर कमरे को भर देती है। परिवार के सदस्य अंतिम तैयारियाँ करते हुए इधर-उधर भाग रहे हैं। आप आईने के सामने बैठते हैं जबकि प्यार भरे हाथ आपको सबसे अच्छे कपड़े पहनने में मदद करते हैं, हर कपड़ा आशीर्वाद और प्यार लिए हुए।',
+        'संगीत शुरू होता है और उत्सव शुरू हो जाता है। आप परिवार और दोस्तों की जय-जयकार के बीच निकलते हैं। रंग जीवंत हैं, केसरिया, लाल, सुनहरा, शुद्ध आनंद का दृश्य बनाते हुए। हर चेहरा खुशी से चमक रहा है, और हवा खुद प्यार से कंपित होती प्रतीत होती है।',
+        'समारोह के दौरान समय ठहर सा जाता है। पवित्र ज्वालाएँ धीरे-धीरे टिमटिमाती हैं जब आप अपनी प्रतिज्ञाएँ लेते हैं। दुनिया बस इस पल तक सिमट जाती है, वादे जो आप करते हैं, चक्कर जो आप लगाते हैं, आशीर्वाद जो स्वर्ग से फूलों की तरह आप पर बरसते हैं।',
+        'भोज भव्य है। हॉल स्वादिष्ट व्यंजनों की खुशबू और आनंदमय बातचीत की आवाज़ से भरा है। आप एक मेज से दूसरी मेज तक जाते हैं, प्रियजनों को गले लगाते हैं, हँसी और खुशी के आँसू साझा करते हैं। हर व्यंजन प्यार से तैयार किया गया है, हर मुस्कान आशीर्वाद है।',
+      ],
+      nature_walks: [
+        'पगडंडी जंगल के किनारे शुरू होती है, जहाँ ऊँचे पेड़ प्राचीन रक्षकों की तरह खड़े हैं। ऊपर का छत्र जंगल के फर्श पर सूरज की रोशनी को नाचते हुए पैटर्न में छानता है। मुलायम ज़मीन पर हर कदम प्रकृति से बातचीत जैसा लगता है। पक्षी ऐसे सुरों में एक-दूसरे को पुकारते हैं जो आप लगभग पहचानते हैं।',
+        'आप पानी की आवाज़ का पीछा करते हैं और एक खुली जगह से गुज़रती नदी पाते हैं। इसकी सतह दोपहर की रोशनी में चमकती है। आपको याद है कि बचपन में यहाँ आते थे, पत्थर पानी पर उछालते थे और उन्हें सतह के नीचे गायब होते देखते थे। नदी वही है, और जो शांति वह लाती है वो भी।',
+        'जंगल एक विशाल घास के मैदान में खुलता है जो जंगली फूलों से ढका है। घास और फूलों की सुगंध हवा भर देती है। आप लेट जाते हैं और आसमान की ओर देखते हैं, नीले रंग का एक कैनवास जिसे केवल आलसी, तैरते बादल तोड़ते हैं। एक तितली आपके हाथ पर बैठ जाती है, उसके पंख फुसफुसाहट जितने कोमल।',
+        'जैसे ही शाम होती है, आप चोटी तक पहुँचते हैं। दुनिया हर दिशा में आपके सामने फैली है। सूरज डूबने लगता है, क्षितिज को अम्बर और गुलाबी रंगों में रंगते हुए। आप चुपचाप बैठते हैं, अपने चेहरे पर ठंडी हवा महसूस करते हुए। इस पल में, सब कुछ बिल्कुल वैसा है जैसा होना चाहिए।',
+      ],
     },
   },
   Bengali: {
@@ -106,6 +182,44 @@ const STORY_I18N = {
       wedding_memories: ['সকালের প্রস্তুতি', 'শোভাযাত্রা', 'অনুষ্ঠান', 'উৎসব'],
       nature_walks: ['বনের পথ', 'নদী', 'তৃণভূমি', 'সূর্যাস্তের চূড়া'],
     },
+    chapter_texts: {
+      childhood_home: [
+        'আপনার পরিবারের বাড়ির পুরনো কাঠের মূল দরজাটি আপনার সামনে দাঁড়িয়ে আছে। আপনি যখন হাতলের দিকে হাত বাড়ান, তখন প্রায় আপনার আঙুলের নিচে পরিচিত শৈলী অনুভব করতে পারেন। বছরের পর বছর রঙ কিছুটা মলিন হয়ে গেছে, তবে এটি এখনও সেই একই হালকা গুঞ্জনে খুলে যায় যা আপনি মনে রেখেছেন। ভেতরে পা রাখতেই উষ্ণতার একটি ঢেউ আপনাকে ঘিরে নেয়।',
+        'রান্নাঘর আপনার প্রিয় খাবারের গন্ধে প্রাণবন্ত। জানালা দিয়ে সূর্যের আলো ঢুকে পুরনো কাঠের টেবিলে সোনালি ছোপ তৈরি করছে, যেখানে প্রতিদিন সন্ধ্যায় পরিবার একত্রিত হতো। আপনি রেডিওতে পুরনো গানের হালকা গুঞ্জন শুনতে পাচ্ছেন, এবং কোথাও পাশে একটি কেতলি সিটি বাজতে শুরু করে।',
+        'আপনি স্ক্রিন দরজা ঠেকে পেছনের বাগানে পা রাখেন। আম গাছটি এখনও লম্বা দাঁড়িয়ে আছে, তার ডালগুলি ফল দিয়ে ভারি। আপনার বাবা যে ঝুলন্ত বাগিচা তৈরি করেছিলেন তা বাতাসে হালকা দোলা খাচ্ছে। ঘাস আপনার নাঙ্গি পায়কে গুলগুল করে যখন আপনি গাছের নিচে আপনার প্রিয় জায়গায় হাঁটেন, যেখানে পৃথিবী সবসময় নিরাপদ মনে হতো।',
+        'পরিচিত সিঁড়ি দিয়ে উঠতে উঠতে, প্রতিটি ধাপ এক অনন্য স্বরে গুঞ্জিত, আপনি আপনার পুরনো ঘরে পৌঁছান। দরজাটি সামান্য খোলা। ভেতরে, সবকিছু ঠিক তেমনই আছে যেমন আপনি রেখে গেছেন। দেয়ালের মলিন পোস্টার, তাকের উপর সাজানো বই, বাগানের দিকে তাকানো ছোট জানালা। আপনি বিছানায় বসে পড়েন এবং স্মৃতিগুলি ফিরে আসতে থাকে।',
+      ],
+      school_days: [
+        'আপনি পরিচিত স্কুলের গেটে দাঁড়িয়ে আছেন, লোহার সারি দশকের পর দশক ছাত্রদের দ্বারা ঘষে মসৃণ হয়ে গেছে। সকালের সূর্য প্রাঙ্গণে লম্বা ছায়া এঁকেবেঁকে তৈরি করছে। আপনি শিশুদের হাসি এবং দূরের স্কুলের ঘণ্টার শব্দ শুনতে পাচ্ছেন। আপনার পা মূল ভবনের দিকে যাওয়া পথের প্রতিটি ফাটল মনে রাখে।',
+        'আপনি আপনার পুরনো শ্রেণীকক্ষে পা রাখেন। কাঠের ডেস্কগুলি সুশৃঙ্খল সারিতে সাজানো, প্রতিটিতে প্রজন্মের পর প্রজন্ম ছাত্রদের কাটা নামাংকরণ। ব্ল্যাকবোর্ডটি তাজা চক দিয়ে লেখা। আপনি জানালার পাশে আপনার আসনটি খুঁজে পান, সেটিই যেখানে আপনি গণিতের পাঠের সময় মেঘ ভেসে যেতে দেখতেন।',
+        'খেলার মাঠে ভ্রান্ত হাসির প্রতিধ্বনি প্রতিধ্বনিত হচ্ছে। আপনি প্রায় দেখতে পান আপনার ছোট্ট রূপ মাঠে দৌড়াচ্ছে, অসীম শক্তি দিয়ে বন্ধুদের তাড়া করছে। পুরনো ফুটবল গোলপোস্টটি এক প্রান্তে এখনও দাঁড়িয়ে আছে। আপনি সেই দিনটি মনে করেন যখন আপনি বিজয়ী গোল করেছিলেন এবং পুরো স্কুল আপনার নাম ধরে ডেকেছিল।',
+        'গ্রন্থাগার শান্ত জ্ঞানের অভয়ারণ্য। ধূলাকণা লম্বা জানালা দিয়ে ছেঁকে আসা আলোর রশ্মির মধ্যে নাচছে। আপনি বইয়ের পৃষ্ঠগুলির উপর আপনার আঙুল বহালেন, প্রতিটিই অন্য একটি পৃথিবীর দরজা। আপনি প্রথম বইটি মনে করেন যা আপনার জীবন পরিবর্তন করেছে, যেটি আপনি এই ছাউনির নিচে শুরু থেকে শেষ পর্যন্ত পড়েছিলেন।',
+      ],
+      family_festival: [
+        'বাড়িটি প্রস্তুতির সাথে পূর্ণ। রঙিন সজ্জা ঝুলানো হচ্ছে, রান্নাঘর উৎসবের মিষ্টির সুগন্ধে পূর্ণ, এবং প্রতিটি কোনা থেকে হাসির প্রতিধ্বনি শোনা যাচ্ছে। আপনি মনে করেন যে সবার একটি ভূমিকা ছিল, আপনার কাজ সবসময় গাঁদা ফুলের মালা জোড়ানো ছিল।',
+        'সমগ্র পরিবার একত্রিত হয়েছে। দাদা-দাদি বারান্দায় বসে, শিশুরা পটাখা নিয়ে ছুটে বেড়াচ্ছে, চাচাতো ভাই-বোনেরা বছরের গল্প ভাগ করে নিচ্ছে। বাড়িটি ভালোবাসা এবং উষ্ণতায় পূর্ণ। আপনি টেবিলের চারপাশে তাকান এবং উপস্থিত প্রত্যেক ব্যক্তির প্রতি গভীর কৃতজ্ঞতা অনুভব করেন।',
+        'সূর্য অস্ত যেতেই উৎসব সত্যিই প্রাণবন্ত হয়ে ওঠে। দীপগুলি একে একে জ্বালানো হয়, প্রাঙ্গণ জুড়ে উষ্ণ সোনালি আলো ছড়িয়ে দেয়। বাতাসে সংগীত ভরে ওঠে এবং মানুষ নাচতে শুরু করে। আপনিও যোগ দেন, তালি বজায় এবং সেই ছন্দে দোলা খায় যা আপনার শরীর মনে রাখে যদিও মন কখনো কখনো ভুলে যায়।',
+        'সন্ধ্যায় পরে, আপনি একটি শান্ত মুহূর্ত খুঁজে পান। আপনি দরজার ধারে বসে আকাশের দিকে তাকান। বাগানে জুনাকিরা নাচছে। দূর থেকে উৎসবের শব্দ চলছে, কিন্তু এখানে, এই মুহূর্তে, সবকিছু শান্ত। আপনি প্রিয়জনদের উপস্থিতি অনুভব করেন, কাছে এবং দূরে উভয়ই, আপনাকে উষ্ণতায় জড়িয়ে ধরে।',
+      ],
+      first_job: [
+        'আপনি অত্যন্ত তাড়াতাড়ি জেগে ওঠেন, উৎসাহ এবং উদ্বেগের সাথে হৃদয় ধকধক করছে। আপনার সেরা পোশাক বিছানায় সাজানো। আপনি তাড়াতাড়ি নাশ্তা করেন, মাকে বিদায়ের চুম্বন দেন এবং একটি নতুন উদ্দেশ্য নিয়ে পৃথিবীতে পা রাখেন। আজ আপনার প্রথম দিন।',
+        'অফিস ভবন আপনার সামনে উঁচু, প্রভাবশালী এবং সামান্য ভয়ংকর। আপনি কাচের দরজা দিয়ে ঢোকেন এবং বন্ধুত্বপূর্ণ মুখ দিয়ে স্বাগত জানানো হয়। আপনার ডেস্কটি ছোট কিন্তু আপনার নিজের। আপনি সাবধানে আপনার জিনিসপত্র সাজান, প্রতিটি বিবরণ লক্ষ করে। এখানেই আপনার গল্পটি খুলে ওঠে।',
+        'আপনার সহকর্মীরা আপনাকে উষ্ণ হাত মিলানো এবং সত্যিকারের হাসি দিয়ে স্বাগত জানান। চায়ের বিরতিতে, আপনি তাদের গল্প জানতে পারেন, প্রত্যেকই নিজের অনন্য যাত্রায়। একজন দয়ালু পৃষ্ঠপোষক আপনাকে তার ডানার নিচে নেন, ধৈর্য এবং উৎসাহ দিয়ে আপনাকে পথ দেখান। আপনি ঘরের মতো অনুভব করেন।',
+        'আপনার প্রথম সপ্তাহের শেষে, আপনার তত্ত্বাবধায়ক আপনাকে তার অফিসে ডেকে পাঠান। সমালোচনার পরিবর্তে, আপনি প্রশংসা পান। আপনার এতে স্বাভাবিক প্রতিভা আছে, তিনি বলেন। সেই সন্ধ্যায় ঘরে হাঁটতে হাঁটতে, অস্তমুখী সূর্য আকাশকে সোনালী রঙে রাঙিয়ে দেয়, এবং আপনি সেই উষ্ণতাকে একটি প্রতিশ্রুতির মতো ভেতরে বহন করেন।',
+      ],
+      wedding_memories: [
+        'বাড়িটি উত্সাহে প্রাণবন্ত। চমেলী এবং গাঁদা ফুলের সুগন্ধ প্রতিটি ঘর ভরে দিচ্ছে। পরিবারের সদস্যরা চূড়ান্ত প্রস্তুতি নিচ্ছে। আপনি একটি আয়নার সামনে বসে আছেন যখন ভালোবাসাময় হাত আপনাকে সেরা পোশাক পরতে সাহায্য করছে, প্রতিটি পোশাক আশীর্বাদ এবং ভালোবাসা বহন করছে।',
+        'সংগীত শুরু হয় এবং উৎসব শুরু হয়। আপনি পরিবার এবং বন্ধুদের জয়কারের মধ্যে বেরিয়ে আসেন। রঙগুলি জীবন্ত, কেশরিয়া, লাল, সোনালী, বিশুদ্ধ আনন্দের একটি দৃশ্য তৈরি করছে। প্রতিটি মুখ খুশিতে ঝলমল করছে এবং বাতাস নিজেই ভালোবাসায় কম্পিত হচ্ছে বলে মনে হচ্ছে।',
+        'অনুষ্ঠানের সময় সময় যেন থেমে যায়। পবিত্র শিখা ধীরে ধীরে জ্বলে যখন আপনি আপনার প্রতিজ্ঞা নেন। পৃথিবী শুধু এই মুহূর্তে সংকুচিত হয়ে যায়, প্রতিশ্রুতি যা আপনি দেন, পরিক্রমা যা আপনি করেন, আশীর্বাদ যা স্বর্গ থেকে ফুলের মতো আপনার উপর বর্ষিত হয়।',
+        'ভোজ ভব্য। হলঘর সুস্বাদু খাবারের সুগন্ধ এবং আনন্দময় কথোপকথনের শব্দে পূর্ণ। আপনি একটি টেবিল থেকে অন্য টেবিলে যান, প্রিয়জনদের জড়িয়ে ধরেন, হাসি এবং সুখের অশ্রু ভাগ করে নেন। প্রতিটি পদ ভালোবাসা দিয়ে প্রস্তুত, প্রতিটি হাসি একটি আশীর্বাদ।',
+      ],
+      nature_walks: [
+        'পায়ের পথটি বনের ধারে শুরু হয়, যেখানে লম্বা গাছগুলি প্রাচীন রক্ষকের মতো দাঁড়িয়ে আছে। উপরের ছাদটি সূর্যের আলোকে বনের মেঝেতে নাচতে থাকা নকশায় ছেঁকে দেয়। নরম মাটিতে প্রতিটি পদক্ষেপ প্রকৃতির সাথে কথোপকথনের মতো মনে হয়। পাখিরা প্রায় চেনা ছন্দে একে অপরকে ডাকে।',
+        'আপনি পানির শব্দের পেছনে যান এবং একটি খোলা জায়গা দিয়ে গলিয়ে যাওয়া নদী খুঁজে পান। এর পৃষ্ঠ বিকেলের আলোয় ঝলমল করছে। আপনি মনে করেন বাচ্চা থাকাকালে এখানে আসতেন, পাথর পানির উপর ছুড়ে মারতেন এবং তাদের পৃষ্ঠের নিচে অদৃশ্য হতে দেখতেন। নদীটি একই আছে, এবং যে শান্তি এনে দেয় সেটিও।',
+        'বনটি একটি বিশাল ঘাসের মাঠে খুলে যায় যা জঙ্গলী ফুলে ঢাকা। ঘাস এবং ফুলের সুগন্ধ বাতাসে ভরে ওঠে। আপনি শুয়ে পড়েন এবং আকাশের দিকে তাকান, নীল রঙের একটি ক্যানভাস যা কেবল অলস, ভাসমান মেঘ দ্বারা ভেঙে যায়। একটি প্রজাপতি আপনার হাতে বসে, তার ডানা ফিসফিসাহটের মতো কোমল।',
+        'সন্ধ্যা নামতে নামতে, আপনি চূড়ায় পৌঁছান। পৃথিবী আপনার সামনে সর্বদিকে ছড়িয়ে পড়ে। সূর্য ডুবতে শুরু করে, দিগন্তকে অম্বর এবং গোলাপী রঙে রাঙিয়ে দিচ্ছে। আপনি নীরবে বসে আছেন, আপনার মুখে শীতল বাতাস অনুভব করে। এই মুহূর্তে, সবকিছু ঠিক তেমনই আছে যেমন হওয়া উচিত।',
+      ],
+    },
   },
   Assamese: {
     page_title: 'ইণ্টাৰেকটিভ গল্প কিতাপ',
@@ -141,6 +255,44 @@ const STORY_I18N = {
       first_job: ['প্ৰথম কালিয়া', 'কৰ্মস্থল', 'সহকৰীসকলৰ লগত সাক্ষাৎ', 'প্ৰথম সফলতা'],
       wedding_memories: ['কালিয়াৰ প্ৰস্তুতি', 'শোভাযাত্ৰা', 'অনুষ্ঠান', 'উৎসৱ'],
       nature_walks: ['বনৰ পথ', 'নদী', 'মেদিনি', 'সূৰ্যাস্তৰ চূড়া'],
+    },
+    chapter_texts: {
+      childhood_home: [
+        'আপোনাৰ পৰিয়ালৰ ঘৰৰ পুৰণি কাঠৰ মূল দুৱাৰটো আপোনাৰ সামনে দাঁড়িয়ে আছে। আপুনি হেণ্ডলৰ লগত হাত বঢ়োৱাৰ সময়ত আপুনি প্ৰায়ে আপোনাৰ আঙুলিৰ তলত পৰিচিত শৈলী অনুভৱ কৰিব পাৰে। বছৰৰ পৰা বছৰ ৰং কিছুটা মেলি হৈ গৈছে, কিন্তু এতিয়াও সেই একেটা মৃদু চৰচৰণিৰে খুলি যায় যিটো আপুনি মনত পেলে আছে। ভিতৰত পা কোৱাৰেই উষ্ণতাৰ এটা ঢৌ আপোনাক ঘেৰি লয়।',
+        'ৰান্নাঘৰটো আপোনাৰ প্ৰিয় খাদ্যৰ গন্ধে সজীৱ। জানালাৰ পৰা সূৰ্যৰ আলো প্ৰৱেশ কৰি পুৰণি কাঠৰ টেবিলত সোণালি দাগ সৃষ্টি কৰে য\'ত পৰিয়াল প্ৰতিদিন সন্ধিয়া একত্ৰিত হৈছিল। আপুনি ৰেডিঅ\'ত পুৰণি গীতৰ মৃদু গুঞ্জন শুনিব পাৰে, আৰু কোথাও ওচৰত এটা চাহীৰ ভাঁড়াৰি চিং চিং কৰিবলৈ আৰম্ভ কৰে।',
+        'আপুনি স্ক্ৰীন দুৱাৰ ঠোকে পেছনৰ বাগিচাত পা কৰে। আম গাছটো এতিয়াও উচ্চ দাঁড়িয়ে আছে, তাৰ ডালসমূহ ফলেৰে ভাৰি। আপোনাৰ পিতাৱে যে ঝুলন্ত বাগিচা নিৰ্মাণ কৰিছিল সেয়া বতাসত মৃদুভাৱে দোলা খাইছে। ঘাঁহে আপোনাৰ খোঁজা পায়কে চিটিয়া মারে যেতিয়া আপুনি গাছৰ তলত আপোনাৰ প্ৰিয় স্থানলৈ যায়, য\'ত পৃথিৱী সদায় নিৰাপদ মনে হৈছিল।',
+        'পৰিচিত মইচোঁৱালে ওপৰলৈ উঠি, প্ৰতিটো সোপান বেলেগ সুৰত চৰচৰ কৰি, আপুনি আপোনাৰ পুৰণি কোটালৈ পৌঁছায়। দুৱাৰটো সামান্য খোলা। ভিতৰত, সকলো কিবা আপুনি এৰা সেইদৰেনেই আছে। গাঁইত মলিন প\'ষ্টাৰ, তাকৰ ওপৰত সাজুৱা কিতাপৰ, বাগিচাৰ লগফুট চাওঁয়া সৰু জানালাৰ। আপুনি বিছানাত কৈ বহিলে আৰু স্মৃতিসমূহ উভতি আহিবলৈ আৰম্ভ কৰে।',
+      ],
+      school_days: [
+        'আপুনি পৰিচিত স্কুলৰ গেটত দাঁড়িয়ে আছে, লোহাৰ সাৰী দশকৰ পৰা দশক ছাত্ৰসকলে ঘষি মসৃণ হৈ গৈছে। কালিৰ সূৰ্যে প্ৰাঙ্গণত দীঘল ছাঁয়া সৃষ্টি কৰে। আপুনি শিশুসকলৰ হাঁহি আৰু দূৰৰ স্কুলৰ ঘণ্টাৰ শব্দ শুনিব পাৰে। আপোনাৰ পায়ে মূল ভৱনলৈ যোৱা পথৰ প্ৰতিটো ফাটল মনত পেলে আছে।',
+        'আপুনি আপোনাৰ পুৰণি শ্ৰেণীকক্ষত পা কৰে। কাঠৰ ডেস্কসমূহ সুসংগঠিত শ্ৰেণীত সাজুৱা, প্ৰতিটোত প্ৰজন্মৰ পৰা প্ৰজন্ম ছাত্ৰসকলৰ কটা নামাংকৰণ। ব্লেকব\'ৰ্ডটো তাজা চকে লিখা। আপুনি জানালাৰ ওচৰত আপোনাৰ আসন বিচাৰি পায়, সেয়া য\'ত আপুনি গণিতৰ পাঠৰ সময়ত মেঘ ভাসি উঠতে চাইছিলে।',
+        'খেলাৰ ময়দানে কাল্পনিক হাঁহিৰ প্ৰতিধ্বনি উৎপন্ন কৰে। আপুনি প্ৰায়ে চায় আপোনাৰ সৰু ৰূপ ময়দানত দৌৰাই আছে, অসীম শক্তিয়ে বন্ধুসকলক তাড়া কৰিছে। পুৰণি ফুটবল গ\'লপ\'ষ্টটো এক প্ৰান্তত এতিয়াও দাঁড়িয়ে আছে। আপুনি সেই দিনটো স্মৃতি কৰে যেতিয়া আপুনি বিজয়ী গ\'ল কৰিছিলে আৰু সমগ্ৰ স্কুলে আপোনাৰ নাম ধৰি ক\'কাইছিল।',
+        'গ্ৰন্থাগাৰটো শান্ত জ্ঞানৰ অভয়াৰণ্য। ধুলিৰ কণাসমূহ দীঘল জানালাৰ পৰা ছেঁকে আহা আলোৰ ৰশ্মিৰ মাজত নাচে। আপুনি কিতাপৰ পৃষ্ঠাসমূহৰ ওপৰ আপোনাৰ আঙুলি বগলে, প্ৰতিটোই আন এটা পৃথিৱীৰ দুৱাৰ। আপুনি প্ৰথম কিতাপটো স্মৃতি কৰে যিয়ে আপোনাৰ জীৱন সলনি কৰিছিল, যিটো আপুনি এই ছাউনিৰ তলত আৰম্ভৰ পৰা শেষলৈ পঢ়িছিলে।',
+      ],
+      family_festival: [
+        'ঘৰটো প্ৰস্তুতিৰে পূৰ্ণ। ৰঙিন সজ্জা লগোৱা হৈ আছে, ৰান্নাঘৰ উৎসৱৰ মিঠাইৰ সুগন্ধে পূৰ্ণ, আৰু প্ৰতিটো কোণাৰ পৰা হাঁহিৰ প্ৰতিধ্বনি শোনা যায়। আপুনি মনত পেলে যে সকলোৰে এটা ভূমিকা আছিল, আপোনাৰ কাম সদায় গেন্দা ফুলৰ মালা গাঁথা আছিল।',
+        'সমগ্ৰ পৰিয়াল একত্ৰিত হৈছে। জেঠাই-জেঠীয়ে বৰান্দাত কৈ বহিছে, শিশুসকলে পটাখা লৈ দৌৰাই বেড়াইছে, মইনী-মাইনীয়ে বছৰৰ কাহিনি ভাগ কৰি লৈছে। ঘৰটো ভালোবাসা আৰু উষ্ণতাই ভৰি গৈছে। আপুনি টেবিলৰ চারেষোৱালে চায় আৰু উপস্থিত প্ৰত্যেক ব্যক্তিৰ প্ৰতি গভীৰ কৃতজ্ঞতা অনুভৱ কৰে।',
+        'সূৰ্য অস্ত যোৱাৰেই উৎসৱটো সত্যিকাৰে সজীৱ হৈ ওঠে। বাতিহে এটা এটা কৰি জ্বলিবলৈ আৰম্ভ কৰে, প্ৰাঙ্গণজোৰাত উষ্ণ সোণালি আলো ছোৱাই দিয়ে। বাতাসত সংগীত ভৰি ওঠে আৰু লোকসকল নাচিবলৈ আৰম্ভ কৰে। আপুনিও যোগ দিয়ে, তালি বজাই আৰু সেই ছন্দত দোলা খায় যিটো আপোনাৰ শৰীৰে মনত পেলে আছে যদিও মনে কেতিয়াবা পাহৰি যায়।',
+        'সন্ধিয়াত পৰা, আপুনি এটা শান্ত মুহূৰ্ত পায়। আপুনি দুৱাৰৰ ধাৰে কৈ আকাশৰ লগফুট চায়। বাগিচাত জুনাকীসকল নাচে। দূৰৰ পৰা উৎসৱৰ শব্দ চলি আছে, কিন্তু ইয়াত, এই মুহূৰ্তত, সকলো কিবা শান্ত। আপুনি প্ৰিয়জনসকলৰ উপস্থিতি অনুভৱ কৰে, ওচৰত আৰু দূৰত দুয়োবোৰে, আপোনাক উষ্ণতাই জৰিয়ে ধৰিছে।',
+      ],
+      first_job: [
+        'আপুনি অতি আগতে উঠে, উৎসাহ আৰু চিন্তাই হৃদয় টোপটোপ কৰি তুলিছে। আপোনাৰ সেৰক পোচাক বিছানাত সাজুৱা। আপুনি সোনকালে নাশতা কৰে, আইক বিদায় চুম্বন দিয়ে, আৰু এটা নতুন উদ্দেশ্য লৈ পৃথিৱীলৈ পা কৰে। আজি আপোনাৰ প্ৰথম দিন।',
+        'অ\'ফিচ ভৱনটো আপোনাৰ সামনে উচ্চ, প্ৰভাৱশালী আৰু সামান্য ভয়ংকৰ। আপুনি কাঁচৰ দুৱাৰ পাৰ হয়ে আহে আৰু বন্ধুত্বপূৰ্ণ মুখে স্বাগত জনোৱা হয়। আপোনাৰ ডেস্কটো সৰু কিন্তু আপোনাৰ নিজৰ। আপুনি সাবধানে আপোনাৰ জিনিসপত্ৰ সজায়, প্ৰতিটো বিৱৰণ লক্ষ কৰি। ইয়াতেই আপোনাৰ কাহিনিটো খোলি ওঠে।',
+        'আপোনাৰ সহকৰীসকলে আপোনাক উষ্ণ হাত মিলাই আৰু সত্যিকাৰেৰে হাঁহি দিয়ে স্বাগত জনায়। চাহীৰ বিৰতিত, আপুনি তেওঁলোকৰ কাহিনি জানিব পাৰে, প্ৰত্যেকেই নিজৰ অনন্য যাত্ৰাত। এজন দয়ালু শিক্ষকে আপোনাক তেওঁৰ বৰ ডানাৰ তলত লয়, ধৈৰ্য আৰু উৎসাহেৰে আপোনাক পথ দেখুৱায়। আপুনি ঘৰৰ দৰে অনুভৱ কৰে।',
+        'আপোনাৰ প্ৰথম সপ্তাহৰ শেষত, আপোনাৰ তত্ত্বাৱধায়কে আপোনাক তেওঁৰ অ\'ফিচলৈ বনায়। সমালোচনাৰ বাবেকৈ, আপুনি প্ৰশংসা পায়। আপোনাৰ এতে স্বাভাৱিক প্ৰতিভা আছে, তেওঁ কয়। সেই সন্ধিয়াত ঘৰলৈ হাঁটি যোৱাৰ সময়ত, অস্তমুখী সূৰ্যে আকাশক সোণালি ৰঙে ৰং দিয়ে, আৰু আপুনি সেই উষ্ণতাক এটা প্ৰতিশ্ৰুতিৰ দৰে ভিতৰত বহন কৰে।',
+      ],
+      wedding_memories: [
+        'ঘৰটো উৎসাহে সজীৱ। চমেলী আৰু গেন্দা ফুলৰ সুগন্ধে প্ৰতিটো কোটা ভৰি গৈছে। পৰিয়ালৰ সদস্যসকলে শেহতীয়া প্ৰস্তুতি লৈ ব্যস্ত। আপুনি এটা আয়নাৰ সামনে কৈ বহিছে যেতিয়া ভালোবাসাময় হাতে আপোনাক সেৰক পোচাক পোৱাত সহায় কৰিছে, প্ৰতিটো পোচাকে আশীর্বাদ আৰু ভালোবাসা বহন কৰি।',
+        'সংগীত আৰম্ভ হয় আৰু উৎসৱ আৰম্ভ হয়। আপুনি পৰিয়াল আৰু বন্ধুসকলৰ জয়-জয়কাৰৰ মাজত বাহিৰ হাব। ৰঙসমূহ জীৱন্ত, কেশৰিয়া, ৰ\'ঙা, সোণালী, বিশুদ্ধ আনন্দৰ এটা দৃশ্য সৃষ্টি কৰি। প্ৰতিটো মুখে খুশিয়ে জ্বলিছে আৰু বাতাসে নিজেই ভালোবাসায় কম্পিত হৈছে বুলি মনে হয়।',
+        'অনুষ্ঠানৰ সময়ত সময় যেন থামি যায়। পৱিত্ৰ শিখাসমূহ মৃদুভাৱে জ্বলে যেতিয়া আপুনি আপোনাৰ প্ৰতিজ্ঞা লয়। পৃথিৱী কেৱল এই মুহূৰ্তলৈ সংকুচিত হয়, প্ৰতিশ্ৰুতি যি আপুনি দিয়ে, পৰিক্ৰমা যি আপুনি কৰে, আশীর্বাদ যিসকল স্বৰ্গৰ পৰা ফুলৰ দৰে আপোনাৰ ওপৰে বৰষিত হয়।',
+        'ভোজ ভব্য। হলঘৰ সুস্বাদু খাদ্যৰ সুগন্ধ আৰু আনন্দময় কথোপকথনৰ শব্দে পূৰ্ণ। আপুনি এটা টেবিলৰ পৰা আন টেবিললৈ যায়, প্ৰিয়জনসকলক আলিঙ্গন কৰে, হাঁহি আৰু সুখৰ ক্ৰন্দন ভাগ কৰি লয়। প্ৰতিটো পদ ভালোবাসাই প্ৰস্তুত, প্ৰতিটো হাঁহি এটা আশীর্বাদ।',
+      ],
+      nature_walks: [
+        'পথটো বনৰ কিনাৰাৰে আৰম্ভ হয়, য\'ত দীঘল গাছসমূহ প্ৰাচীন ৰক্ষকৰ দৰে দাঁড়িয়ে আছে। ওপৰৰ ছাদে সূৰ্যৰ আলোকে বনৰ মেঝেত নাচতে থাকা আৰ্হিত ছেঁকে দিয়ে। মৃদু মাটিত প্ৰতিটো পদক্ষেপ প্ৰকৃতিৰ লগত কথোপকথনৰ দৰে মনে হয়। চৰাইসকলে প্ৰায়ে চেনা সুৰত একে অপৰক ডাকে।',
+        'আপুনি পানিৰ শব্দৰ পেছনে যায় আৰু এটা খোলা স্থানৰ পৰা গলিয়ে যোৱা নদী পায়। ইয়াৰ পৃষ্ঠ বিকালৰ আলোত ঝলমল কৰে। আপুনি মনত পেলে যে বাচ্চা থাকোতায় ইয়াত আহিছিলে, পাথৰ পানিৰ ওপৰে শিংগা লাগাইছিলে আৰু সেইসকলক পৃষ্ঠৰ তলত অদৃশ্য হৈ যোৱা চাইছিলে। নদীটো একেই আছে, আৰু যে শান্তি আনে সেয়াও।',
+        'বনে এটা বিশাল ঘাঁহৰ ময়দানত খোলি যায় যি জঙ্গলী ফুলেৰে ঢাকা। ঘাঁহ আৰু ফুলৰ সুগন্ধে বাতাস ভৰি ওঠে। আপুনি শুয়ে পৰে আৰু আকাশৰ লগফুট চায়, নীলা ৰঙেৰে এটা কেনভাছ যিটো কেৱল অলস, ভাসমান মেঘে ভাঙে। এটা প্ৰজাপতি আপোনাৰ হাতত কৈ বহিলে, ইয়াৰ ডানা ফিসফিসাহটৰ দৰে কোমল।',
+        'সন্ধিয়া নামতে নামতে, আপুনি চুড়ালৈ পৌঁছায়। পৃথিৱী আপোনাৰ সামনে সকলো দিশে ছৰি পৰিছে। সূৰ্য অস্ত যোৱাৰেই আৰম্ভ কৰে, দিগন্তক অম্বৰ আৰু ৰ\'ঙা ৰঙে ৰং দিয়াই। আপুনি নীৰৱে কৈ বহিছে, মুখত শীতল বতাস অনুভৱ কৰি। এই মুহূৰ্তত, সকলো কিবা ঠিকেই তেনেই আছে যেনেই হবা উচিত।',
+      ],
     },
   },
   Khasi: {
@@ -178,6 +330,44 @@ const STORY_I18N = {
       wedding_memories: ['Morning Preparations', 'Procession', 'Ceremony', 'Celebration'],
       nature_walks: ['Forest Path', 'River', 'Meadow', 'Sunset Ridge'],
     },
+    chapter_texts: {
+      childhood_home: [
+        'Ka door thymmai kiba kha ai ha ka ktien ba phi da ioh tang tawh. Phi kynthih ba phi kynjam da ka jingsngew ha ka ktien da phi kynthih ka handle. Ka paint peit lei kham, kiba ruh kiba ym ruh. Ka jingsngew ha ka ktien ba phi da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka kitchen khublai ka jingsngew ba phi da ioh tang tawh ha ka ktien. Ka jingsngew ha ka ktien ba phi da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Phi push ka screen door bad step ha ka backyard. Ka mango tree ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka swing ba ka pa ai ha ka tree da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Phi climb ka stairs ba phi da ioh tang tawh, bad step ka room ba phi da ioh tang tawh. Ka door ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+      school_days: [
+        'Phi stand ha ka school gate ba phi da ioh tang tawh. Ka morning sun da ioh ba phi da ioh ka jingsngew tang tawh. Ka school bell ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Phi step ha ka classroom ba phi da ioh tang tawh. Ka desk ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka blackboard ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka playground khublai ka jingsngew ba phi da ioh tang tawh. Ka goalpost ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka library khublai ka jingsngew ba phi da ioh tang tawh. Ka book ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+      family_festival: [
+        'Ka ktien khublai ka jingsngew ba phi da ioh tang tawh. Ka decoration ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka sweet ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka family khublai ka jingsngew ba phi da ioh tang tawh. Ka grandparent ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka child ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka sun set khublai ka jingsngew ba phi da ioh tang tawh. Ka lamp ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka music ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka evening khublai ka jingsngew ba phi da ioh tang tawh. Ka firefly ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka celebration ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+      first_job: [
+        'Phi wake bad ka morning ba phi da ioh tang tawh. Ka breakfast ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka first day ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka office building khublai ka jingsngew ba phi da ioh tang tawh. Ka desk ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka story ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka colleague khublai ka jingsngew ba phi da ioh tang tawh. Ka mentor ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka home ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka first week khublai ka jingsngew ba phi da ioh tang tawh. Ka supervisor ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka sunset ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+      wedding_memories: [
+        'Ka ktien khublai ka jingsngew ba phi da ioh tang tawh. Ka jasmine ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka family ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka music khublai ka jingsngew ba phi da ioh tang tawh. Ka color ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka joy ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka ceremony khublai ka jingsngew ba phi da ioh tang tawh. Ka flame ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka blessing ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka feast khublai ka jingsngew ba phi da ioh tang tawh. Ka aroma ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka love ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+      nature_walks: [
+        'Ka trail khublai ka jingsngew ba phi da ioh tang tawh. Ka tree ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka bird ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka river khublai ka jingsngew ba phi da ioh tang tawh. Ka stone ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka peace ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka meadow khublai ka jingsngew ba phi da ioh tang tawh. Ka flower ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka butterfly ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+        'Ka ridge khublai ka jingsngew ba phi da ioh tang tawh. Ka sunset ruh da ioh ba phi da ioh ka jingsngew tang tawh. Ka breeze ruh da ioh ba phi da ioh ka jingsngew tang tawh.',
+      ],
+    },
   },
   Mizo: {
     page_title: 'Interactive Storybooks',
@@ -213,6 +403,44 @@ const STORY_I18N = {
       first_job: ['Morning', 'Workplace', 'Colleagues', 'Achievement'],
       wedding_memories: ['Preparations', 'Procession', 'Ceremony', 'Celebration'],
       nature_walks: ['Path', 'River', 'Meadow', 'Sunset Ridge'],
+    },
+    chapter_texts: {
+      childhood_home: [
+        'Ka door thymmai ti a ni, ka in awm tawh naa. I huapna hmun a ni. Ka paint peit lei ti a ni. Ka creak ti a ni. Ka in chhunga inkal chuan a hlimna lam a ni.',
+        'Ka kitchen-a ka thildang hriselna a ni. Ka sun light a chhuah chhuah a ni. Ka radio a awm a ni. Ka kettle a tui a ni.',
+        'I screen door chu a hlan a ni. Ka mango tree chu a sang tak a ni. Ka swing chu a dilh dilh a ni. I pan hi a lai chhuak a ni.',
+        'I stairs chu a hawng hawng a ni. I room chu a hmanhman a ni. Ka door chu a khia a ni. I memory chu a thleng thleng a ni.',
+      ],
+      school_days: [
+        'I school gate-a i awm a ni. Ka sun light chu a chhuak a ni. Ka children chu a hlim hlim a ni. Ka bell chu a ring a ni.',
+        'I classroom-a i kal a ni. Ka desk chu a rem rem a ni. Ka blackboard chu a thla thla a ni. I seat chu a hmanhman a ni.',
+        'Ka playground chu a hlim hlim a ni. Ka goalpost chu a awm a ni. I goal chu a score a ni. Ka school chu a kong kong a ni.',
+        'Ka library chu a zirna hmun a ni. Ka book chu a awm a ni. Ka dust chu a hmang hmang a ni. Ka life chu a thleng a ni.',
+      ],
+      family_festival: [
+        'Ka in chu a thrang thrang a ni. Ka decoration chu a lang lang a ni. Ka sweet chu a hrisel a ni. Ka laughter chu a ring a ni.',
+        'Ka family chu a trap trap a ni. Ka grandparent chu a kai kai a ni. Ka children chu a hmang hmang a ni. Ka love chu a thleng a ni.',
+        'Ka sun chu a tla tla a ni. Ka lamp chu a hmang hmang a ni. Ka music chu a ring a ni. Ka dance chu a thlen a ni.',
+        'Ka evening chu a hrih hrih a ni. Ka firefly chu a hmang hmang a ni. Ka celebration chu a thleng a ni. Ka peace chu a awm a ni.',
+      ],
+      first_job: [
+        'I morning chu a thleng thleng a ni. Ka breakfast chu a hrisel a ni. Ka first day chu a thleng a ni. I purpose chu a thleng a ni.',
+        'Ka office chu a sang sang a ni. Ka desk chu a hmanhman a ni. Ka door chu a thla thla a ni. Ka story chu a thleng a ni.',
+        'Ka colleague chu a hlim hlim a ni. Ka mentor chu a hrisel a ni. Ka home chu a hmanhman a ni. Ka warmth chu a thleng a ni.',
+        'Ka first week chu a thleng a ni. Ka supervisor chu a hrisel a ni. Ka praise chu a thleng a ni. Ka sunset chu a hmang hmang a ni.',
+      ],
+      wedding_memories: [
+        'Ka in chu a thrang thrang a ni. Ka jasmine chu a hrisel a ni. Ka family chu a hmang hmang a ni. Ka dress chu a lang lang a ni.',
+        'Ka music chu a ring a ni. Ka color chu a lang lang a ni. Ka joy chu a thleng a ni. Ka love chu a thleng a ni.',
+        'Ka ceremony chu a thleng thleng a ni. Ka flame chu a hmang hmang a ni. Ka vow chu a thleng a ni. Ka blessing chu a thleng a ni.',
+        'Ka feast chu a thleng thleng a ni. Ka aroma chu a hrisel a ni. Ka conversation chu a ring a ni. Ka smile chu a lang lang a ni.',
+      ],
+      nature_walks: [
+        'Ka trail chu a thleng thleng a ni. Ka tree chu a sang sang a ni. Ka sun light chu a hmang hmang a ni. Ka bird chu a ring a ni.',
+        'Ka river chu a thleng thleng a ni. Ka water chu a tui tui a ni. Ka stone chu a hmang hmang a ni. Ka peace chu a thleng a ni.',
+        'Ka meadow chu a thleng thleng a ni. Ka flower chu a lang lang a ni. Ka butterfly chu a hmang hmang a ni. Ka whisper chu a hrih hrih a ni.',
+        'Ka ridge chu a thleng thleng a ni. Ka sun chu a tla tla a ni. Ka breeze chu a hrih hrih a ni. Ka moment chu a thleng a ni.',
+      ],
     },
   },
   Nagamese: {
@@ -250,6 +478,44 @@ const STORY_I18N = {
       wedding_memories: ['Preparations', 'Procession', 'Ceremony', 'Celebration'],
       nature_walks: ['Path', 'River', 'Meadow', 'Sunset Ridge'],
     },
+    chapter_texts: {
+      childhood_home: [
+        'Tumar ghorar purano katha-r dhorwara khula ase. Tumi jate handleot hat disaot kiba lagiase. Paint oci oci holaise. Creak khub lutuk-lutuk kore. Bhitorot xilai xamustu gorom lagise.',
+        'Kitchenot tumar priyo khabaror gondho ase. Surjyar alo janihi kotha uthise. Radioat purano gaan bajise. Ketli-xeti xit-xit kore.',
+        'Tumi screen dhorwara dhak disai bhitorot xilai xamustu. Am ghor xei akou ase, xei fole bhor. Baba-ak banai thoka swing batiote hil-hil kore. Ghaasi tumar khola paer xate-xate kore.',
+        'Tumar purano siri-or xur xurani bhitorot uthai xamustu. Darwazata khula ase. Bhitorot sab xei ase jeneke tumi akou thila. Purano poster, boi-r thaila, bagan-xokhi xur-xur sura. Tumi bistarot bosai smriti abar ahi ase.',
+      ],
+      school_days: [
+        'Tumi school-ot gate-or samne daraise. Surjyar alo beraat chanda-bidi banaise. Baccha-hara han-han kore. Durot school-or ghontar xobdo unaisi ase.',
+        'Tumi classroom-or bhitorot xilai xamustu. Kaath-or desk sari-sari lagaise. Blackboardat taza chalk-le lekhaise. Tumar akou kursi-a janal-or kuxate.',
+        'Playgroundat bhootia han-hansi ghungur-ghungur kore. Tumi prai dekhibo pariso tomar choto rup maidaanat dau-rai ase. Purano goal-post xei akou ase. Tumar prithom goal-ot poora school-i tumar naam roi dhori khilaisil.',
+        'Library xanti-or gyan-or abhayarunia. Dhuli-or kanwa jhil-mil kore. Tumi boi-r pora hat phiraiso. Tumar prithom boi-ta jibon bodlaisil xei, xur-ta thik ei chhata-talot porhaisil.',
+      ],
+      family_festival: [
+        'Ghor-xur xob-xur-xur tayarit xulia ase. Rongin saj-awt lagaisi ase. Kitchenat festival-or mithaai-r gondho ase. Xob konar pora han-hansi phuli xuli ase.',
+        'Poora porial ekathe xaria ase. Dadak-dadi barandat bosaise. Baccha-hara phataka le xur-xur dau-rai ase. Moina-moina sal-er kahini lagaise. Ghorat bhale-basa-or tuufaan.',
+        'Surjyar ebar set hoile festival asliloi pranali lagi ase. Diyo ek-ek kore jalaise. Gaon-or beraa ke gorom sonali alole bhoraise. Gaat-e nachiboloi xuria ase.',
+        'Xondhiya-t ek xanti-er moment milise. Tumi darwazat bosa akash-xokhi愁khoise. Baganot junaki-hara nachi ase. Duror festival-or xobdo jari ase.',
+      ],
+      first_job: [
+        'Tumi bharpur xokale uthai xamustu, hridaya dhak-dhak kore. Tumar bhal-ak pochak bistarot lagaise. Tumi xaldi nashta koriso, aei kiss kori ahi xamustu. Aji tumar prithom din.',
+        'Office building tumar samne xinxinai kore. Tumi kaach-or dhorwara dhak phuti xamustu. Tomar desk xurur kintu tomor. Tumi sab akou-ta sajaiso. Ekhia-t thak tumar kahini phuli xulia ase.',
+        'Tumar saokoli haath mili xowa-sowa smile kori swagat korise. Cha-er break-ot uni-xun xob kahini lagaise. Ejon bhale mentor tumar wing-or talot loi lagise. Tumi ghur-or moto lagise.',
+        'Tumar prithom saptah-or xur-xurani-t tumar supervisor tumar office-ot bolaise. Gali naqi, tumar praise milise. Tomat natural talent ase, uni koi. Xondhiya-t ghur-ot phurrai, surjyar aasmaan ke sonali kore dhakaise.',
+      ],
+      wedding_memories: [
+        'Ghor xus-xusiye phuli xuli ase. Chameli aru gendaphul-or gondho-xobdo bhoraise. Porial-or manu-hara sab tayarit bosi ase. Tumi aayanar samne bosai xamustu.',
+        'Gaati bajai xur-xurani hai xamustu. Rang-ini khesori, rong, sonali poora xubho-er xur-xurani. Xob muh-ot han-hansi jwjl-jwjl kore. Batiote khaowa xubho-er poka poka bhoraise.',
+        'Ceremony-ot xomoy jekuwa thami xamustu. Paabitro jhikhi-xokha dhire-dhire jwl-jwl kore. Duniya keval ei moment-ot simit xamustu. Tumar promis, tumar pherat-phera, tumar aashirbaad, phul-or moto pouxa xamustu-or upor.',
+        'Bhoj xubho-er xubho. Haallor bhitrat sundar khabar-or gondho aru han-hansi xobdo bhoraise. Tumi ek-xuni thaila-t phur-a-fur kori priyo-jan-har ke galai-mili lagaiso. Ek-ek pokat bhale-basa-le banaisi ase.',
+      ],
+      nature_walks: [
+        'Poith bana-or kinara-t xur-xurani hai xamustu. Lom-lomba ghaach-hara prachin rakhok-or moto daraise. Maati-or soft-ot ek-ek sopok prakritir sathe kotha-xoba. Chirai-hara prae-chena raagat phul-phuli phutai.',
+        'Tumi paani-or xobdo peyite xunaakhal-or potholoi xilai xamustu. Us-or baaki surjyar alo-re jhil-mhil kore. Tumi baccha thakot eiyate asil, paani-or opor pathor fiki xilaiso. Xei nalini xei akou ase.',
+        'Bana khuli phuri jai ek bistaar gaasor baag banaise. Gaas aru phul-or gondho bhatore bhoraise. Tumi leti xamustu akash-xokhi愁khoise. Phool-puthi tumar haatot ola-kheli xilai kore.',
+        'Xondhiya-t poith pahar-or xur-t xamustu pahunchi xamustu. Duniya tumar samne sab xuna-xuna-t xilia ase. Surjyar bostu xamustu, xamustu ke sonali aru gulapi rang de xiai ase. Tumi chup-xaap bosai xamustu, thanda haawaa haatot xilai xamustu.',
+      ],
+    },
   },
   Manipuri: {
     page_title: 'Interactive Storybooks',
@@ -286,6 +552,44 @@ const STORY_I18N = {
       wedding_memories: ['Preparations', 'Procession', 'Ceremony', 'Celebration'],
       nature_walks: ['Path', 'River', 'Meadow', 'Sunset Ridge'],
     },
+    chapter_texts: {
+      childhood_home: [
+        'Nungai-gi yum-gi thymmai door atei taram taram ni. Adubada phangba amasidi handle na yengbu khang-gi khang-gi. Paint pei ta-ta ni. Creak khubu khubu ni. Khang-gi phang-gi na yum-gi inkal-gi khang-gi khang-gi.',
+        'Kitchen-adi hena khang-gi khang-gi na yum-gi inkal-gi khang-gi khang-gi. Sunlight window na phang-gi khang-gi khang-gi. Radio-adi purano gaana phang-gi khang-gi khang-gi. Ketli khubu khubu ni.',
+        'Screen door push-gi adum-gi backyard-adi phang-gi khang-gi khang-gi. Mango tree atei taram taram ni. Swing ba pa-gi khut-gi phang-gi khang-gi khang-gi. Grass-gi taram taram khut-gi khang-gi khang-gi.',
+        'Stairs na adum-gi phang-gi khang-gi khang-gi. Room-gi phang-gi khang-gi khang-gi. Door khia ni. Memory-gi adum-gi phang-gi khang-gi khang-gi.',
+      ],
+      school_days: [
+        'School gate-adi taram taram phang-gi khang-gi khang-gi. Morning sunlight phang-gi khang-gi khang-gi. Children-gi han-han-ni. School bell khubu khubu ni.',
+        'Classroom-adi phang-gi khang-gi khang-gi. Desk-adi taram taram ni. Blackboard-adi phang-gi khang-gi khang-gi. Seat-adi window-adi na phang-gi khang-gi khang-gi.',
+        'Playground-adi han-hansi phang-gi khang-gi khang-gi. Goalpost atei taram taram ni. Goal score-gi khang-gi khang-gi. School-gi kong-ni.',
+        'Library-adi zirna hmun-gi khang-gi khang-gi. Book-adi phang-gi khang-gi khang-gi. Dust-gi hmang-hmang-ni. Life-gi phang-gi khang-gi khang-gi.',
+      ],
+      family_festival: [
+        'Yum-gi thrang-thrang-ni. Decoration-gi lang-lang-ni. Sweet-gi hrisel-ni. Laughter-gi ring-ni.',
+        'Family-gi trap-trap-ni. Grandparent-gi kai-kai-ni. Children-gi hmang-hmang-ni. Love-gi phang-gi khang-gi khang-gi.',
+        'Sun-gi tla-tla-ni. Lamp-gi hmang-hmang-ni. Music-gi ring-ni. Dance-gi phang-gi khang-gi khang-gi.',
+        'Evening-gi hrih-hrih-ni. Firefly-gi hmang-hmang-ni. Celebration-gi phang-gi khang-gi khang-gi. Peace-gi awm-ni.',
+      ],
+      first_job: [
+        'Morning-gi phang-gi khang-gi khang-gi. Breakfast-gi hrisel-ni. First day-gi phang-gi khang-gi khang-gi. Purpose-gi phang-gi khang-gi khang-gi.',
+        'Office-gi sang-sang-ni. Desk-gi hmanhman-ni. Door-gi thla-thla-ni. Story-gi phang-gi khang-gi khang-gi.',
+        'Colleague-gi hlim-hlim-ni. Mentor-gi hrisel-ni. Home-gi hmanhman-ni. Warmth-gi phang-gi khang-gi khang-gi.',
+        'First week-gi phang-gi khang-gi khang-gi. Supervisor-gi hrisel-ni. Praise-gi phang-gi khang-gi khang-gi. Sunset-gi hmang-hmang-ni.',
+      ],
+      wedding_memories: [
+        'Yum-gi thrang-thrang-ni. Jasmine-gi hrisel-ni. Family-gi hmang-hmang-ni. Dress-gi lang-lang-ni.',
+        'Music-gi ring-ni. Color-gi lang-lang-ni. Joy-gi phang-gi khang-gi khang-gi. Love-gi phang-gi khang-gi khang-gi.',
+        'Ceremony-gi phang-gi khang-gi khang-gi. Flame-gi hmang-hmang-ni. Vow-gi phang-gi khang-gi khang-gi. Blessing-gi phang-gi khang-gi khang-gi.',
+        'Feast-gi phang-gi khang-gi khang-gi. Aroma-gi hrisel-ni. Conversation-gi ring-ni. Smile-gi lang-lang-ni.',
+      ],
+      nature_walks: [
+        'Trail-gi phang-gi khang-gi khang-gi. Tree-gi sang-sang-ni. Sunlight-gi hmang-hmang-ni. Bird-gi ring-ni.',
+        'River-gi phang-gi khang-gi khang-gi. Water-gi tui-tui-ni. Stone-gi hmang-hmang-ni. Peace-gi phang-gi khang-gi khang-gi.',
+        'Meadow-gi phang-gi khang-gi khang-gi. Flower-gi lang-lang-ni. Butterfly-gi hmang-hmang-ni. Whisper-gi hrih-hrih-ni.',
+        'Ridge-gi phang-gi khang-gi khang-gi. Sun-gi tla-tla-ni. Breeze-gi hrih-hrih-ni. Moment-gi phang-gi khang-gi khang-gi.',
+      ],
+    },
   },
   Nepali: {
     page_title: 'इन्टर‍्याक्टिभ कथा किताबहरू',
@@ -321,6 +625,44 @@ const STORY_I18N = {
       first_job: ['पहिलो बिहान', 'कार्यस्थल', 'सहकर्मीसँग भेट', 'पहिलो उपलब्धि'],
       wedding_memories: ['बिहानको तयारी', 'जुलुस', 'समारोह', 'उत्सव'],
       nature_walks: ['जङ्गलको बाटो', 'नदी', 'घाँसे मैदान', 'सूर्यास्तको चुच्चो'],
+    },
+    chapter_texts: {
+      childhood_home: [
+        'तपाईंको परिवारको पुरानो काठको मुख्य ढोका तपाईंको अगाडि उभिएको छ। जब तपाईं ह्यान्डलतर्फ हात बढाउनुहुन्छ, तपाईंले आफ्नो औंलाको तल परिचित दाग लगभग महसुस गर्न सक्नुहुन्छ। वर्षौंदेखि रङ अलि फिको भएको छ, तर यो अझै पनि उही मृदु खर्करो संग खुल्छ जुन तपाईंलाई सम्झना छ। भित्र पाइन्त्रिएपछि उष्णताको एक लहर तपाईंलाई घेर्छ।',
+        'भान्सा तपाईंको मनपर्ने खानाको गन्धले जीवन्त छ। झ्यालबाट सूर्यको प्रकाश भित्र छिर्छ, पुरानो काठको टेबुलमा सुनौला थपहरू बनाउँदछ जहाँ परिवार हरेक साँम्बा जम्मा हुन्थ्यो। तपाईंले रेडियोमा पुराना गीतहरू बजिरहेको मृदु गूंज सुन्न सक्नुहुन्छ, र कहीं नजिकै केतलीले सिटी बजाउन थाल्छ।',
+        'तपाईंले स्क्रिन ढोका ठोक्दै पछाडिको बगैँचामा पाइन राख्नुहुन्छ। आमको रूख अझै पनि अग्लो उभिएको छ, यसका डालहरू फलले भारी छन्। तपाईंका बुबाले बनाइदिएको झूला हावामा बिस्तारै दोलिरहेको छ। घाँसले तपाईंका खोला खुट्टालाई सहलाउँदै तपाईं रूखको तल तपाईंको मनपर्ने ठाउँमा हिँड्नुहुन्छ, जहाँ संसार सधैं सुरक्षित महसुस हुन्थ्यो।',
+        'परिचित सिँढीहरू चढ्दै, हरेक चरण फरक स्वरमा खर्करो मार्दै, तपाईं आफ्नो पुरानो कोठामा पुग्नुहुन्छ। ढोका अलि खुला छ। भित्र, सबै कुरा त्यस्तै छ जस्तो तपाईंले छाड्नुभएको थियो। ग्यालरीका फिका पोस्टरहरू, ताकमा साजिएका किताबहरू, बगैँचातिर हेर्ने सानो झ्याल। तपाईं बिस्तारमा बस्नुहुन्छ र सम्झनाहरू फर्किन थाल्छन्।',
+      ],
+      school_days: [
+        'तपाईं परिचित विद्यालयको ढोकामा उभिनुहुन्छ, लोहाका सरिहरू दशकौंका विद्यार्थीहरूले घसिएर चिल्ला भएका छन्। बिहानको सूर्यले आँगनमा लामो छायाहरू बनाउँदछ। तपाईंले बच्चाहरूको हाँसो र टाढा विद्यालयको घण्टाको आवाज सुन्न सक्नुहुन्छ। तपाईंका खुट्टाले मुख्य भवनतर्फ जाने बाटोको हरेक फुटान सम्झन्छन्।',
+        'तपाईं आफ्नो पुरानो कक्षामा पाइन राख्नुहुन्छ। काठका डेस्कहरू सफा कतारमा सजिएका छन्, प्रत्येकमा पुस्तौं-पुस्ताका विद्यार्थीहरूका कोरिएका नामहरू छन्। ब्ल्याकबोर्ड ताजा चकले लेखिएको छ। तपाईं झ्यालको छेउमा आफ्नो आसन खोज्नुहुन्छ, त्यो जुन गणितको पाठको बेला बादलहरू हिँड्दै हेर्ने गर्नुभएको थियो।',
+        'खेल मैदानले भ्रान्त हाँसोको प्रतिध्वनि गर्छ। तपाईंले लगभग देख्न सक्नुहुन्छ तपाईंको सानो रूप मैदानमा दौडिरहेको, असीम ऊर्जाले साथीहरूको पछि लागिरहेको। पुरानो फुटबल गोलपोस्ट अझै पनि एक छेउमा उभिएको छ। तपाईंले त्यो दिन सम्झनुहुन्छ जब तपाईंले विजयी गोल गर्नुभयो र पूरै विद्यालयले तपाईंको नाम चियर गर्‍यो।',
+        'पुस्तकालय शान्त ज्ञानको अभयारण्य हो। धुलोका कणहरू अग्ला झ्यालबाट छनिएर आउने प्रकाशका किरणहरूमा नाच्छन्। तपाईंले किताबहरूको पृष्ठमा औंला फिराउनुहुन्छ, प्रत्येक अर्को संसारको ढोका हो। तपाईंले त्यो पहिलो किताब सम्झनुहुन्छ जसले तपाईंको जीवन परिवर्तन गर्‍यो, जुन तपाईंले यही छाउनीको तल आदिदेखि अन्तसम्म पढ्नुभएको थियो।',
+      ],
+      family_festival: [
+        'घर तयारीहरूले भरिएको छ। रङ्गीन सजावटहरू लगाइँदैछन्, भान्सा चाडको मिठाइको स्वादिलो गन्धले भरिएको छ, र हरेक कुनाबाट हाँसोको गूंज सुनिन्छ। तपाईंलाई सम्झना छ कि सबैको एक भूमिका थियो, तपाईंको काम सधैं गेँदाको माला गाँठ्नु थियो।',
+        'सम्पूर्ण परिवार एकत्रित भएको छ। हजुरबुबा-हजुरआमा वरण्डामा बसेका छन्, बच्चाहरू फुलझडी लिएर दौडिरहेका छन्, देवर-भाउजूहरूले वर्षभरका कथाहरू साझा गर्दैछन्। घर माया र उष्णताले उब्जिएको छ। तपाईंले टेबुलको वरिपरि हेर्नुहुन्छ र प्रत्येक व्यक्तिप्रति गहिरो कृतज्ञता महसुस गर्नुहुन्छ।',
+        'सूर्य अस्त हुँदा चाड साँचो मा जीवन्त हुन्छ। दियाहरू एक-एक गरी बालिन्छन्, आँगनमा तातो सुनौलो प्रकाश फैलाउँदै। संगीतले वायु भर्छ, र मानिसहरूले नाच्न थाल्छन्। तपाईं पनि सामेल हुनुहुन्छ, त्यस छन्दमा ताली बजाउँदै र झुम्दै जुन तपाईंको शरीरले सम्झन्छ भने मनले कहिलेकाहीँ बिर्सन्छ।',
+        'साँम्बा पछि, तपाईंलाई एउटा शान्त क्षण पाउनुहुन्छ। तपाईं ढोकाको धारमा बस्नुहुन्छ, आकाशतिर हेर्दै। बगैँचामा जुनाकीहरू नाचिरहेका छन्। टाढाबाट उत्सवको आवाज जारी छ, तर यहाँ, यस क्षणमा, सबै कुरा शान्त छ। तपाईंले प्रियजनहरूको उपस्थिति महसुस गर्नुहुन्छ, नजिक र टाढा दुवै, तपाईंलाई उष्णतामा बेरिरहेका।',
+      ],
+      first_job: [
+        'तपाईं अति बिहान उठ्नुहुन्छ, उत्साह र नर्भाहटले हृदय धक्धक गरिरहेको। तपाईंका राम्रा लुगाहरू बिस्तारमा सजिएका छन्। तपाईंले छिटो नाश्ता गर्नुहुन्छ, आमालाई बिदाइको चुम्बन दिनुहुन्छ, र नयाँ उद्देश्य लिएर संसारमा पाइन राख्नुहुन्छ। आज तपाईंको पहिलो दिन हो।',
+        'कार्यालय भवन तपाईंको अगाडि अग्लो, प्रभावशाली र अलि डरलाग्दो उभिएको छ। तपाईंले काँचका ढोकाहरू भेट्दै मित्रवत अनुहारहरूबाट स्वागत पाउनुहुन्छ। तपाईंको डेस्क सानो तर तपाईंको आफ्नै हो। तपाईंले सावधानीपूर्वक आफ्ना सामानहरू सजाउनुहुन्छ, प्रत्येक विवरण लक्षमा राख्दै। यहीं तपाईंको कथा खुल्छ।',
+        'तपाईंका सहकर्मीहरूले तातो हात मिलाएर र साँचो मुस्कानले स्वागत गर्छन्। चियाको बिर्चमा, तपाईंले उनीहरूका कथाहरू सिक्नुहुन्छ, प्रत्येक आफ्नै अनूठो यात्रामा। एक दयालु गुरुले तपाईंलाई आफ्नो पखेतल लिन्छन्, धैर्य र प्रोत्साहनले बाटो देखाउँदै। तपाईंलाई घरजस्तो लाग्छ।',
+        'तपाईंको पहिलो हप्ताको अन्तमा, तपाईंका सुपरभाइजरले तपाईंलाई आफ्नो कार्यालयमा बोलाउँछन्। आलोचनाको साटो, तपाईंले प्रशंसा पाउनुहुन्छ। तपाईंमा यसको प्राकृतिक प्रतिभा छ, उनी भन्छन्। त्यो साँम्बा घर फर्किँदा, अस्तमानले आकाशलाई सुनौलो रङ दिन्छ, र तपाईं त्यो उष्णतालाई एक प्रतिश्रुति जस्तै भित्र बोक्नुहुन्छ।',
+      ],
+      wedding_memories: [
+        'घर उत्साहले जीवन्त छ। चमेली र गेँदाको सुगन्धले प्रत्येक कोठा भरेको छ। परिवारका सदस्यहरू अन्तिम तयारी गर्दै इधर-उधर भाग्दैछन्। तपाईं आईनाको अगाडि बस्नुहुन्छ जब माया भरेका हाथहरूले तपाईंलाई सबैभन्दा राम्रो लुगा लगाउन मद्दत गर्छन्, हरेक लुगाले आशीर्वाद र माया बोकेको छ।',
+        'संगीत बज्छ र उत्सव सुरु हुन्छ। तपाईं परिवार र साथीहरूको जयजयकारको बीच बाहिर निस्कनुहुन्छ। रङहरू जीवन्त छन्, केशरिया, रातो, सुनौलो, शुद्ध आनन्दको दृश्य बनाउँदै। हरेक अनुहार खुशीले चम्किरहेको छ, र वायु आफैं मायामा कम्पित हुँदै छ भन्ने लाग्छ।',
+        'समारोहको बेला समय जस्तो रोकिन्छ। पवित्र ज्वालाहरू बिस्तारै झिलिमिल गर्छन् जब तपाईंले आफ्ना प्रतिज्ञाहरू लिनुहुन्छ। संसार यसै क्षणमा सीमित हुन्छ, तपाईंले गर्ने प्रतिश्रुतिहरू, तपाईंले घुम्ने चक्रहरू, स्वर्गबाट फूलहरू जस्तै तपाईंमा वर्षिने आशीर्वादहरू।',
+        'भोज भव्य छ। हलघर स्वादिष्ट खानाको सुगन्ध र आनन्दमय कुराकानीको आवाजले भरेको छ। तपाईं एक टेबुलबाट अर्को टेबुलमा जानुहुन्छ, प्रियजनहरूलाई अँगाल्नुहुन्छ, हाँसो र सुखका आँसू साझा गर्नुहुन्छ। हरेक परिकार मायाले तयार गरिएको छ, हरेक मुस्कान एउटा आशीर्वाद हो।',
+      ],
+      nature_walks: [
+        'बाटो जङ्गलको किनारमा सुरु हुन्छ, जहाँ अग्ला रूखहरू प्राचीन रक्षकहरू जस्तै उभिएका छन्। माथिको छाउनले सूर्यको प्रकाशलाई जङ्गलको जमिनमा नाच्दै ढाँचामा छान्छ। नरम जमिनमा हरेक कदम प्रकृतिसँग कुराकानी जस्तो लाग्छ। चराहरूले लगभग चिनेका धुनमा एकअर्कालाई बोलाउँछन्।',
+        'तपाईंले पानीको आवाज पछ्याउनुहुन्छ र खुला ठाउँबाट बग्दो नदी फेला पाउनुहुन्छ। यसको सतह दिउँसोको प्रकाशमा झल्मिल गर्छ। तपाईंले सम्झनुहुन्छ बच्चा हुँदा यहाँ आउनुभएको, पत्थरहरू पानीमा छ्याप्दै र तिनीहरूलाई सतहको तल अदृश्य हुँदै हेर्नुभएको। नदी उस्तै छ, र यसले ल्याउने शान्ति पनि।',
+        'जङ्गल जङ्गली फूलहरूले ढाकिएको विशाल घाँसे मैदानमा खुल्छ। घाँस र फूलहरूको सुगन्धले वायु भर्छ। तपाईं लेट्नुहुन्छ र आकाशतिर हेर्नुहुन्छ, नीलो रङको क्यानभास जुन केवल आलसी, तैरिरहेका बादलहरूले भत्काउँछ। एउटा प्रजापति तपाईंको हातमा बस्छ, यसका पखेटाहरू फुसफुसाहट जत्तिकै कोमल छन्।',
+        'साँम्बा नजिकिँदा, तपाईं चुच्चोमा पुग्नुहुन्छ। संसार तपाईंको अगाडि सबै दिशामा फैलिएको छ। सूर्य अस्त हुन थाल्छ, क्षितिजलाई अम्बर र गुलाबी रङमा रंगिदै। तपाईं चुपचाप बस्नुहुन्छ, आफ्नो अनुहारमा चिसो हावा महसुस गर्दै। यस क्षणमा, सबै कुरा ठीक त्यस्तै छ जस्तै हुनुपर्छ।',
+      ],
     },
   },
 };

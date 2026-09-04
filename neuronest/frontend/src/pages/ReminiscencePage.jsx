@@ -256,8 +256,8 @@ export default function ReminiscencePage() {
   const handlePlayPause = () => {
     if (isPlaying) {
       stopSpeech();
-    } else if (storyData?.chapters?.[currentChapter]) {
-      speakText(storyData.chapters[currentChapter].text);
+    } else if (translatedText) {
+      speakText(translatedText);
     }
   };
 
@@ -323,6 +323,7 @@ export default function ReminiscencePage() {
   const fontSizeMap = { small: '0.95rem', medium: '1.1rem', large: '1.3rem' };
   const chapter = storyData?.chapters?.[currentChapter];
   const totalChapters = storyData?.chapters?.length || 0;
+  const translatedText = t.chapter_texts?.[selectedTheme?.key]?.[currentChapter] || chapter?.text || '';
 
   if (loading) {
     return (
@@ -531,7 +532,7 @@ export default function ReminiscencePage() {
                 className="reminiscence-chapter-text"
                 style={{ fontSize: fontSizeMap[fontSize] }}
               >
-                {chapter.text}
+                {translatedText}
               </p>
 
               <div className="reminiscence-chapter-actions">
