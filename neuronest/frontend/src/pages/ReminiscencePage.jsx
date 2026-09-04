@@ -5,6 +5,21 @@ import { useTranslation } from '../context/LanguageContext.jsx';
 import { reminiscenceApi } from '../services/api';
 import { cacheGet, cacheSet } from '../services/offlineSync';
 import Animated3DBackground from '../components/ui/Animated3DBackground.jsx';
+import STORY_I18N from '../i18n/reminiscence.js';
+
+const LANG_BCP47 = {
+  English: 'en-US',
+  Assamese: 'as-IN',
+  Bengali: 'bn-IN',
+  Hindi: 'hi-IN',
+  Khasi: 'en-IN',
+  Mizo: 'en-IN',
+  Nagamese: 'bn-IN',
+  Manipuri: 'mni-IN',
+  Nepali: 'ne-NP',
+};
+
+const VOICE_OPTIONS = Object.entries(LANG_BCP47).map(([label, lang]) => ({ lang, label }));
 
 const MOODS = [
   { key: 'relaxed', icon: '😌', label: 'Relaxed', color: '#10b981' },
@@ -12,18 +27,6 @@ const MOODS = [
   { key: 'nostalgic', icon: '🥹', label: 'Nostalgic', color: '#f59e0b' },
   { key: 'emotional', icon: '😭', label: 'Emotional', color: '#8b5cf6' },
   { key: 'calm', icon: '🧘', label: 'Calm', color: '#6b7280' },
-];
-
-const VOICE_OPTIONS = [
-  { lang: 'en-US', label: 'English' },
-  { lang: 'hi-IN', label: 'Hindi' },
-  { lang: 'ta-IN', label: 'Tamil' },
-  { lang: 'te-IN', label: 'Telugu' },
-  { lang: 'bn-IN', label: 'Bengali' },
-  { lang: 'mr-IN', label: 'Marathi' },
-  { lang: 'gu-IN', label: 'Gujarati' },
-  { lang: 'kn-IN', label: 'Kannada' },
-  { lang: 'ml-IN', label: 'Malayalam' },
 ];
 
 const FALLBACK_THEMES = [
@@ -136,7 +139,7 @@ const FALLBACK_STORIES = {
 
 export default function ReminiscencePage() {
   const { patient } = usePatient();
-  const { t } = useTranslation();
+  const { lang } = useTranslation();
   const navigate = useNavigate();
 
   const [themes, setThemes] = useState([]);
@@ -148,10 +151,12 @@ export default function ReminiscencePage() {
   const [showMoodCheck, setShowMoodCheck] = useState(false);
   const [moodBefore, setMoodBefore] = useState(null);
   const [moodAfter, setMoodAfter] = useState(null);
-  const [voiceLang, setVoiceLang] = useState('en-US');
+  const [voiceLang, setVoiceLang] = useState(() => LANG_BCP47[patient?.language || lang] || 'en-US');
   const [fontSize, setFontSize] = useState('medium');
   const [completedChapters, setCompletedChapters] = useState([]);
   const [showCompletion, setShowCompletion] = useState(false);
+
+  const t = STORY_I18N[lang] || STORY_I18N.English;
 
   const textRef = useRef(null);
   const synthRef = useRef(typeof window !== 'undefined' ? window.speechSynthesis : null);
@@ -326,7 +331,7 @@ export default function ReminiscencePage() {
         <div className="reminiscence-container">
           <div className="reminiscence-loading">
             <div className="reminiscence-spinner" />
-            <p>Preparing your stories...</p>
+            <p>{t.loading}</p>
           </div>
         </div>
       </div>
@@ -340,11 +345,10 @@ export default function ReminiscencePage() {
         <div className="reminiscence-container">
           <div className="reminiscence-hero">
             <div className="reminiscence-hero-content">
-              <p className="home-card-eyebrow">Reminiscence Therapy</p>
-              <h1 className="page-title">Interactive Storybooks</h1>
+              <p className="home-card-eyebrow">{t.page_title}</p>
+              <h1 className="page-title">{t.page_title}</h1>
               <p className="page-subtitle">
-                AI-generated personalized stories based on your life experiences.
-                Choose a theme to begin your journey back in time.
+                {t.page_subtitle}
               </p>
             </div>
           </div>
@@ -370,10 +374,10 @@ export default function ReminiscencePage() {
                   <span className="reminiscence-theme-icon">{theme.icon}</span>
                 </div>
                 <div className="reminiscence-theme-body">
-                  <h3 className="reminiscence-theme-title">{theme.title}</h3>
-                  <p className="reminiscence-theme-desc">{theme.description}</p>
+                  <h3 className="reminiscence-theme-title">{t.themes?.[theme.key]?.title || theme.title}</h3>
+                  <p className="reminiscence-theme-desc">{t.themes?.[theme.key]?.desc || theme.description}</p>
                   <div className="reminiscence-theme-meta">
-                    <span>{theme.chapterCount || 4} chapters</span>
+                    <span>{theme.chapterCount || 4} {t.chapters_label}</span>
                     <span className="reminiscence-theme-arrow">→</span>
                   </div>
                 </div>
@@ -393,23 +397,21 @@ export default function ReminiscencePage() {
           <div className="reminiscence-completion">
             <div className="reminiscence-completion-card">
               <span className="reminiscence-completion-icon">{storyData?.icon || '📖'}</span>
-              <h2>Journey Complete</h2>
+              <h2>{t.journey_complete}</h2>
               <p className="reminiscence-completion-text">
-                Thank you for revisiting your memories. Stories like these help keep our most
-                cherished moments alive. The feelings you experienced today are a beautiful
-                part of who you are.
+                {t.completion_text}
               </p>
               {moodBefore && moodAfter && (
                 <div className="reminiscence-mood-summary">
                   <div className="reminiscence-mood-item">
-                    <span className="reminiscence-mood-label">Mood Before</span>
+                    <span className="reminiscence-mood-label">{t.mood_before}</span>
                     <span className="reminiscence-mood-value">
                       {MOODS.find(m => m.key === moodBefore)?.icon} {MOODS.find(m => m.key === moodBefore)?.label}
                     </span>
                   </div>
                   <div className="reminiscence-mood-arrow">→</div>
                   <div className="reminiscence-mood-item">
-                    <span className="reminiscence-mood-label">Mood After</span>
+                    <span className="reminiscence-mood-label">{t.mood_after}</span>
                     <span className="reminiscence-mood-value">
                       {MOODS.find(m => m.key === moodAfter)?.icon} {MOODS.find(m => m.key === moodAfter)?.label}
                     </span>
@@ -418,10 +420,10 @@ export default function ReminiscencePage() {
               )}
               <div className="reminiscence-completion-actions">
                 <button className="btn-green" onClick={handleBack}>
-                  Explore More Stories
+                  {t.explore_more}
                 </button>
                 <button className="btn-glass" onClick={() => { handleBack(); navigate('/home'); }}>
-                  Return Home
+                  {t.return_home}
                 </button>
               </div>
             </div>
@@ -439,7 +441,7 @@ export default function ReminiscencePage() {
           <div className="reminiscence-mood-check">
             <div className="reminiscence-mood-card">
               <span className="reminiscence-mood-big-icon">💭</span>
-              <h2>{!moodBefore ? 'How are you feeling right now?' : 'And now, how do you feel after the story?'}</h2>
+              <h2>{!moodBefore ? t.how_feeling : t.how_feeling_after}</h2>
               <div className="reminiscence-mood-grid">
                 {MOODS.map((mood) => (
                   <button
@@ -467,7 +469,7 @@ export default function ReminiscencePage() {
       <div className="reminiscence-story-container">
         <div className="reminiscence-story-header">
           <button className="reminiscence-back-btn" onClick={handleBack}>
-            ← Back to Stories
+            {t.back_to_stories}
           </button>
           <div className="reminiscence-story-controls">
             <select
@@ -518,9 +520,9 @@ export default function ReminiscencePage() {
               <div className="reminiscence-chapter-image-overlay" />
               <div className="reminiscence-chapter-image-title">
                 <span className="reminiscence-chapter-number">
-                  Chapter {currentChapter + 1} of {totalChapters}
+                  {t.chapter_of?.replace('{{current}}', currentChapter + 1).replace('{{total}}', totalChapters) || `Chapter ${currentChapter + 1} / ${totalChapters}`}
                 </span>
-                <h2 className="reminiscence-chapter-heading">{chapter.title}</h2>
+                <h2 className="reminiscence-chapter-heading">{t.chapters?.[selectedTheme?.key]?.[currentChapter] || chapter.title}</h2>
               </div>
             </div>
 
@@ -537,7 +539,7 @@ export default function ReminiscencePage() {
                   className="reminiscence-play-btn"
                   onClick={handlePlayPause}
                 >
-                  {isPlaying ? '⏸ Pause' : '🔊 Read Aloud'}
+                  {isPlaying ? `⏸ ${t.pause}` : `🔊 ${t.read_aloud}`}
                 </button>
               </div>
             </div>
@@ -548,7 +550,7 @@ export default function ReminiscencePage() {
                 onClick={handlePrev}
                 disabled={currentChapter === 0}
               >
-                ← Previous
+                {t.previous}
               </button>
               <span className="reminiscence-nav-page">
                 {currentChapter + 1} / {totalChapters}
@@ -561,7 +563,7 @@ export default function ReminiscencePage() {
                 }}
                 disabled={currentChapter === totalChapters - 1}
               >
-                Next →
+                {t.next}
               </button>
             </div>
           </div>
