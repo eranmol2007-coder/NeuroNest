@@ -4518,25 +4518,6 @@ h3,
   background-position: right 8px center;
 }
 
-.reminiscence-auto-btn {
-  padding: 8px 14px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: #4a6a4a !important;
-  background: rgba(255, 255, 255, 0.7) !important;
-  border: 1.5px solid rgba(122, 154, 122, 0.3) !important;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  font-family: inherit;
-}
-
-.reminiscence-auto-btn.active {
-  background: linear-gradient(135deg, #7a9a7a, #5a8a5a) !important;
-  color: #fff !important;
-  border-color: #7a9a7a !important;
-}
-
 /* Chapter Progress Dots */
 .reminiscence-chapter-progress {
   display: flex;

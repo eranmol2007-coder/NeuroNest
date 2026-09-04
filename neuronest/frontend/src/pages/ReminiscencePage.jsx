@@ -149,7 +149,6 @@ export default function ReminiscencePage() {
   const [moodBefore, setMoodBefore] = useState(null);
   const [moodAfter, setMoodAfter] = useState(null);
   const [voiceLang, setVoiceLang] = useState('en-US');
-  const [autoPlay, setAutoPlay] = useState(false);
   const [fontSize, setFontSize] = useState('medium');
   const [completedChapters, setCompletedChapters] = useState([]);
   const [showCompletion, setShowCompletion] = useState(false);
@@ -227,15 +226,7 @@ export default function ReminiscencePage() {
 
     utterance.onend = () => {
       setIsPlaying(false);
-      if (autoPlay && storyData && currentChapter < storyData.chapters.length - 1) {
-        setTimeout(() => {
-          setCurrentChapter(prev => {
-            const next = prev + 1;
-            setCompletedChapters(p => [...new Set([...p, prev])]);
-            return next;
-          });
-        }, 2000);
-      } else if (storyData && currentChapter === storyData.chapters.length - 1) {
+      if (storyData && currentChapter === storyData.chapters.length - 1) {
         setCompletedChapters(p => [...new Set([...p, currentChapter])]);
         setShowMoodCheck(true);
       }
@@ -255,7 +246,7 @@ export default function ReminiscencePage() {
         chapterIndex: currentChapter,
       }).catch(() => {});
     }
-  }, [voiceLang, autoPlay, storyData, currentChapter]);
+  }, [voiceLang, storyData, currentChapter]);
 
   const handlePlayPause = () => {
     if (isPlaying) {
@@ -488,12 +479,6 @@ export default function ReminiscencePage() {
                 <option key={v.lang} value={v.lang}>{v.label}</option>
               ))}
             </select>
-            <button
-              className={`reminiscence-auto-btn ${autoPlay ? 'active' : ''}`}
-              onClick={() => setAutoPlay(!autoPlay)}
-            >
-              {autoPlay ? '⏸ Auto' : '▶ Auto'}
-            </button>
             <select
               className="reminiscence-font-select"
               value={fontSize}
