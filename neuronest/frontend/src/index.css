@@ -4223,7 +4223,7 @@ h3,
 .reminiscence-page {
   min-height: 100vh;
   background: transparent;
-  padding-top: 80px;
+  padding-top: 120px;
   position: relative;
 }
 
@@ -4459,7 +4459,7 @@ h3,
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
-  padding: 0 48px 80px;
+  padding: 40px 48px 80px;
 }
 
 .reminiscence-story-header {
