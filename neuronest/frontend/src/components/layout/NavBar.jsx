@@ -84,23 +84,11 @@ export default function NavBar() {
 
         {user ? (
           <nav className="nav-links" aria-label="Main navigation">
-            {isCaregiver ? (
-              <>
-                <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
-                <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
-                <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
-                <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
-                <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
-              </>
-            ) : (
-              <>
-                <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
-                <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
-                <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
-                <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
-                <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
-              </>
-            )}
+            <NavLink to="/home" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.home')}</NavLink>
+            <NavLink to="/games" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.games')}</NavLink>
+            <NavLink to="/reminders" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.reminders')}</NavLink>
+            <NavLink to="/caregiver" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.caregiver')}</NavLink>
+            <NavLink to="/settings" className={({ isActive }) => `nav-link${isActive ? ' active' : ''}`}>{t('nav.settings')}</NavLink>
             <div className="nav-divider" />
             <button onClick={() => { clearPatient(); logout(); navigate('/'); }} className="nav-link nav-signout" style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
               <IconSignOut size={16} /> {t('nav.sign_out')}
