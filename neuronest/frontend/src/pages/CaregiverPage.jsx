@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend, Filler } from 'chart.js';
 import { Line, Bar } from 'react-chartjs-2';
 import { usePatient } from '../context/PatientContext.jsx';
-import { caregiversApi, alertsApi } from '../services/api';
+import { caregiversApi, alertsApi, personalStoriesApi } from '../services/api';
 import { cacheGet, cacheSet } from '../services/offlineSync';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, BarElement, Tooltip, Legend, Filler);
@@ -214,13 +214,19 @@ export default function CaregiverPage() {
   const [dashboard, setDashboard] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [storyStats, setStoryStats] = useState(null);
 
   const load = useCallback(async () => {
     if (!patient?.caregiverId) { setLoading(false); return; }
     setLoading(true); setError(null);
     try {
-      const res = await caregiversApi.getDashboard(patient.caregiverId);
-      setDashboard(res.data); await cacheSet('caregiverDashboard', res.data);
+      const [dashRes, statsRes] = await Promise.all([
+        caregiversApi.getDashboard(patient.caregiverId),
+        personalStoriesApi.getStats(patient.caregiverId).catch(() => ({ data: null })),
+      ]);
+      setDashboard(dashRes.data);
+      setStoryStats(statsRes.data);
+      await cacheSet('caregiverDashboard', dashRes.data);
     } catch {
       const cached = await cacheGet('caregiverDashboard');
       if (cached) { setDashboard(cached); setError('Showing cached data.'); }
@@ -372,6 +378,54 @@ export default function CaregiverPage() {
                 </div>
               ))}
             </div>
+          </div>
+
+          <div className="glass-card" style={{ padding: '24px', marginBottom: '32px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '16px' }}>
+              <p className="text-xl font-bold" style={{ color: '#1a2e1a' }}>Story Quiz Performance</p>
+              <a href="/reminiscence-stories" style={{ fontSize: '13px', color: '#3d7a3d', fontWeight: '600', textDecoration: 'none' }}>
+                Manage Stories →
+              </a>
+            </div>
+            {storyStats && storyStats.totalStories > 0 ? (
+              <div>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '20px' }}>
+                  <div style={{ textAlign: 'center', padding: '16px', borderRadius: '12px', background: 'rgba(122,170,122,0.06)' }}>
+                    <p style={{ fontSize: '28px', fontWeight: '700', color: '#2a5a2a' }}>{storyStats.totalStories}</p>
+                    <p style={{ fontSize: '12px', color: '#666' }}>Stories Created</p>
+                  </div>
+                  <div style={{ textAlign: 'center', padding: '16px', borderRadius: '12px', background: 'rgba(122,170,122,0.06)' }}>
+                    <p style={{ fontSize: '28px', fontWeight: '700', color: '#2a5a2a' }}>{storyStats.totalQuizzes}</p>
+                    <p style={{ fontSize: '12px', color: '#666' }}>Quizzes Taken</p>
+                  </div>
+                  <div style={{ textAlign: 'center', padding: '16px', borderRadius: '12px', background: 'rgba(122,170,122,0.06)' }}>
+                    <p style={{ fontSize: '28px', fontWeight: '700', color: storyStats.avgAccuracy >= 70 ? '#2a5a2a' : storyStats.avgAccuracy >= 40 ? '#d97706' : '#ef4444' }}>{storyStats.avgAccuracy}%</p>
+                    <p style={{ fontSize: '12px', color: '#666' }}>Avg Accuracy</p>
+                  </div>
+                </div>
+                {storyStats.storyStats?.length > 0 && (
+                  <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+                    {storyStats.storyStats.map((s) => (
+                      <div key={s.storyId} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', borderRadius: '10px', background: 'rgba(255,255,255,0.3)', border: '1px solid rgba(122,170,122,0.15)' }}>
+                        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                          <span style={{ fontSize: '24px' }}>{s.icon || '📖'}</span>
+                          <div>
+                            <p style={{ fontWeight: '600', color: '#1a2e1a', fontSize: '14px' }}>{s.title}</p>
+                            <p style={{ fontSize: '12px', color: '#666' }}>{s.totalQuizzes} quiz{s.totalQuizzes !== 1 ? 'zes' : ''} taken</p>
+                          </div>
+                        </div>
+                        <div style={{ textAlign: 'right' }}>
+                          <p style={{ fontWeight: '700', color: s.bestAccuracy >= 70 ? '#2a5a2a' : s.bestAccuracy >= 40 ? '#d97706' : '#ef4444', fontSize: '16px' }}>{s.bestAccuracy}%</p>
+                          <p style={{ fontSize: '11px', color: '#999' }}>best</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ) : (
+              <p className="text-center py-8" style={{ color: '#999' }}>No personal stories created yet</p>
+            )}
           </div>
 
           {/* Performance Summary & Contact Patient */}

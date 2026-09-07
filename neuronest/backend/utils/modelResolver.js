@@ -17,6 +17,8 @@ function getModels() {
     MoodCheckin: require('../models/MoodCheckin'),
     User: require('../models/User'),
     Otp: require('../models/Otp'),
+    PersonalStory: require('../models/PersonalStory'),
+    StoryQuiz: require('../models/StoryQuiz'),
   };
 }
 

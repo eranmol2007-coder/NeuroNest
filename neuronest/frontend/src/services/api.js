@@ -115,6 +115,18 @@ export const reminiscenceApi = {
   getProgress: (patientId) => api.get(`/api/reminiscence/progress/${patientId}`),
 };
 
+export const personalStoriesApi = {
+  create: (data) => api.post('/api/personal-stories', data),
+  getForPatient: (patientId) => api.get(`/api/personal-stories/patient/${patientId}`),
+  getByCaregiver: (caregiverId) => api.get(`/api/personal-stories/caregiver/${caregiverId}`),
+  getById: (id) => api.get(`/api/personal-stories/${id}`),
+  update: (id, data) => api.put(`/api/personal-stories/${id}`, data),
+  remove: (id) => api.delete(`/api/personal-stories/${id}`),
+  submitQuiz: (data) => api.post('/api/personal-stories/quiz', data),
+  getQuizResults: (patientId) => api.get(`/api/personal-stories/quiz/results/${patientId}`),
+  getStats: (caregiverId) => api.get(`/api/personal-stories/stats/${caregiverId}`),
+};
+
 function authRequest(path, options = {}) {
   const token = localStorage.getItem('neuronest_token');
   const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };

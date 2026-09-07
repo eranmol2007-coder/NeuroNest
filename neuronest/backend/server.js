@@ -19,6 +19,7 @@ const moodRoutes = require('./routes/moodRoutes');
 const voiceRoutes = require('./routes/voiceRoutes');
 const authRoutes = require('./routes/authRoutes');
 const reminiscenceRoutes = require('./routes/reminiscenceRoutes');
+const personalStoryRoutes = require('./routes/personalStoryRoutes');
 
 const app = express();
 
@@ -56,6 +57,7 @@ app.use('/api/moods', moodRoutes);
 app.use('/api/auth', authRoutes);
 app.use('/api/voice', voiceRoutes);
 app.use('/api/reminiscence', reminiscenceRoutes);
+app.use('/api/personal-stories', personalStoryRoutes);
 
 // SPA fallback
 app.get('*', (req, res, next) => {

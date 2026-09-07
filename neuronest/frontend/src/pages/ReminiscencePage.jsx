@@ -2,9 +2,10 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { usePatient } from '../context/PatientContext.jsx';
 import { useTranslation } from '../context/LanguageContext.jsx';
-import { reminiscenceApi } from '../services/api';
+import { reminiscenceApi, personalStoriesApi } from '../services/api';
 import { cacheGet, cacheSet } from '../services/offlineSync';
 import Animated3DBackground from '../components/ui/Animated3DBackground.jsx';
+import StoryQuiz from '../components/features/StoryQuiz.jsx';
 import STORY_I18N from '../i18n/reminiscence.js';
 
 const LANG_BCP47 = {
@@ -155,6 +156,10 @@ export default function ReminiscencePage() {
   const [fontSize, setFontSize] = useState('medium');
   const [completedChapters, setCompletedChapters] = useState([]);
   const [showCompletion, setShowCompletion] = useState(false);
+  const [personalStories, setPersonalStories] = useState([]);
+  const [selectedPersonalStory, setSelectedPersonalStory] = useState(null);
+  const [personalChapterIdx, setPersonalChapterIdx] = useState(0);
+  const [showQuiz, setShowQuiz] = useState(false);
 
   const t = STORY_I18N[lang] || STORY_I18N.English;
 
@@ -165,9 +170,13 @@ export default function ReminiscencePage() {
     async function load() {
       setLoading(true);
       try {
-        const res = await reminiscenceApi.getThemes();
-        setThemes(res.data);
-        await cacheSet('reminiscence_themes', res.data);
+        const [themesRes, storiesRes] = await Promise.all([
+          reminiscenceApi.getThemes(),
+          patient?._id ? personalStoriesApi.getForPatient(patient._id).catch(() => ({ data: [] })) : Promise.resolve({ data: [] }),
+        ]);
+        setThemes(themesRes.data);
+        setPersonalStories(storiesRes.data || []);
+        await cacheSet('reminiscence_themes', themesRes.data);
       } catch {
         const cached = await cacheGet('reminiscence_themes');
         setThemes(cached || FALLBACK_THEMES);
@@ -176,7 +185,7 @@ export default function ReminiscencePage() {
       }
     }
     load();
-  }, []);
+  }, [patient]);
 
   const loadStory = useCallback(async (themeKey) => {
     try {
@@ -308,6 +317,9 @@ export default function ReminiscencePage() {
     setShowMoodCheck(false);
     setMoodBefore(null);
     setMoodAfter(null);
+    setSelectedPersonalStory(null);
+    setPersonalChapterIdx(0);
+    setShowQuiz(false);
   };
 
   useEffect(() => {
@@ -453,11 +465,154 @@ export default function ReminiscencePage() {
                   >
                     <span className="reminiscence-mood-btn-icon">{mood.icon}</span>
                     <span className="reminiscence-mood-btn-label">{mood.label}</span>
-                  </button>
-                ))}
+                </button>
+              ))}
+            </div>
+
+            {personalStories.length > 0 && (
+              <div style={{ marginTop: '40px' }}>
+                <h2 style={{ color: '#2d5a27', fontSize: '24px', marginBottom: '8px' }}>Your Personal Stories</h2>
+                <p style={{ color: '#666', marginBottom: '20px', fontSize: '14px' }}>
+                  Stories written by your caregiver about your life experiences
+                </p>
+                <div className="reminiscence-themes-grid">
+                  {personalStories.map((story) => (
+                    <button
+                      key={story._id}
+                      className="reminiscence-theme-card"
+                      onClick={() => { setSelectedPersonalStory(story); setPersonalChapterIdx(0); }}
+                      style={{ '--theme-color': story.color || '#7a9a7a' }}
+                    >
+                      <div className="reminiscence-theme-image" style={{ height: '160px' }}>
+                        <div className="reminiscence-theme-overlay" style={{ background: `linear-gradient(135deg, ${story.color || '#7a9a7a'}44, ${story.color || '#7a9a7a'}11)` }} />
+                        <span className="reminiscence-theme-icon" style={{ fontSize: '48px' }}>{story.icon || '📖'}</span>
+                      </div>
+                      <div className="reminiscence-theme-body">
+                        <h3 className="reminiscence-theme-title">{story.title}</h3>
+                        <p className="reminiscence-theme-desc">{story.description || 'A personal story from your caregiver'}</p>
+                        <div className="reminiscence-theme-meta">
+                          <span>{story.chapters?.length || 0} chapters</span>
+                          <span className="reminiscence-theme-arrow">→</span>
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
+            )}
+          </div>
+        </div>
+      </div>
+      </div>
+    );
+  }
+
+  if (showQuiz && selectedPersonalStory) {
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-container" style={{ paddingTop: '120px' }}>
+          <StoryQuiz
+            story={selectedPersonalStory}
+            onBack={handleBack}
+            onComplete={() => { handleBack(); }}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  if (selectedPersonalStory) {
+    const pChapter = selectedPersonalStory.chapters?.[personalChapterIdx];
+    const pTotal = selectedPersonalStory.chapters?.length || 0;
+
+    return (
+      <div className="reminiscence-page">
+        <Animated3DBackground />
+        <div className="reminiscence-story-container">
+          <div className="reminiscence-story-header">
+            <button className="reminiscence-back-btn" onClick={handleBack}>
+              {t.back_to_stories}
+            </button>
+            <div className="reminiscence-story-controls">
+              <select
+                className="reminiscence-voice-select"
+                value={voiceLang}
+                onChange={(e) => setVoiceLang(e.target.value)}
+              >
+                {VOICE_OPTIONS.map(v => (
+                  <option key={v.lang} value={v.lang}>{v.label}</option>
+                ))}
+              </select>
             </div>
           </div>
+
+          <div className="reminiscence-chapter-progress">
+            {selectedPersonalStory.chapters?.map((_, idx) => (
+              <button
+                key={idx}
+                className={`reminiscence-progress-dot ${idx === personalChapterIdx ? 'active' : ''}`}
+                onClick={() => { stopSpeech(); setPersonalChapterIdx(idx); }}
+              >
+                {idx + 1}
+              </button>
+            ))}
+          </div>
+
+          {pChapter && (
+            <div className="reminiscence-chapter-viewer">
+              <div className="reminiscence-chapter-content" ref={textRef}>
+                <span className="reminiscence-chapter-number">
+                  Chapter {personalChapterIdx + 1} of {pTotal}
+                </span>
+                <h2 className="reminiscence-chapter-heading" style={{ marginBottom: '16px' }}>{pChapter.title}</h2>
+                <p
+                  className="reminiscence-chapter-text"
+                  style={{ fontSize: fontSizeMap[fontSize] }}
+                >
+                  {pChapter.text}
+                </p>
+
+                <div className="reminiscence-chapter-actions">
+                  <button
+                    className="reminiscence-play-btn"
+                    onClick={() => {
+                      if (isPlaying) { stopSpeech(); }
+                      else if (pChapter.text) { speakText(pChapter.text); }
+                    }}
+                  >
+                    {isPlaying ? `⏸ ${t.pause}` : `🔊 ${t.read_aloud}`}
+                  </button>
+                </div>
+              </div>
+
+              <div className="reminiscence-chapter-nav">
+                <button
+                  className="reminiscence-nav-btn"
+                  onClick={() => { stopSpeech(); setPersonalChapterIdx(prev => prev - 1); }}
+                  disabled={personalChapterIdx === 0}
+                >
+                  {t.previous}
+                </button>
+                <span className="reminiscence-nav-page">
+                  {personalChapterIdx + 1} / {pTotal}
+                </span>
+                <button
+                  className="reminiscence-nav-btn"
+                  onClick={() => {
+                    stopSpeech();
+                    if (personalChapterIdx < pTotal - 1) {
+                      setPersonalChapterIdx(prev => prev + 1);
+                    } else {
+                      setShowQuiz(true);
+                    }
+                  }}
+                >
+                  {personalChapterIdx < pTotal - 1 ? t.next : 'Take Quiz →'}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       </div>
     );
