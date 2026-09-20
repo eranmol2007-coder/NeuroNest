@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroNest: AI-Powered Cognitive Care Platform - ML Project Proposal</title>
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0.75in;
+            }
+            body {
+                font-size: 10pt;
+            }
+            h1 {
+                page-break-before: always;
+            }
+            h1:first-of-type {
+                page-break-before: avoid;
+            }
+            pre, code {
+                page-break-inside: avoid;
+            }
+            table {
+                page-break-inside: avoid;
+            }
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            max-width: 8.5in;
+            margin: 0 auto;
+            padding: 20px;
+            color: #333;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 40px;
+        }
+        
+        h2 {
+            color: #34495e;
+            border-bottom: 2px solid #95a5a6;
+            padding-bottom: 8px;
+            margin-top: 30px;
+        }
+        
+        h3 {
+            color: #16a085;
+            margin-top: 25px;
+        }
+        
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        
+        pre {
+            background: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 0.85em;
+        }
+        
+        pre code {
+            background: transparent;
+            color: inherit;
+            padding: 0;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        
+        th {
+            background: #3498db;
+            color: white;
+        }
+        
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+        
+        .cover-page {
+            text-align: center;
+            padding: 100px 0;
+            page-break-after: always;
+        }
+        
+        .cover-page h1 {
+            font-size: 36pt;
+            border: none;
+            color: #2c3e50;
+        }
+        
+        .cover-page h2 {
+            font-size: 20pt;
+            color: #3498db;
+            border: none;
+        }
+        
+        .cover-page p {
+            font-size: 14pt;
+            margin: 20px 0;
+        }
+        
+        .toc {
+            page-break-after: always;
+        }
+        
+        .toc h2 {
+            text-align: center;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            text-decoration: none;
+            color: #2c3e50;
+        }
+        
+        .executive-summary {
+            background: #ecf0f1;
+            padding: 20px;
+            border-left: 5px solid #3498db;
+            margin: 20px 0;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #ffc107;
+            margin: 20px 0;
+        }
+        
+        .success {
+            background: #d4edda;
+            padding: 15px;
+            border-left: 4px solid #28a745;
+            margin: 20px 0;
+        }
+        
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+        
+        li {
+            margin: 8px 0;
+        }
+        
+        blockquote {
+            border-left: 4px solid #95a5a6;
+            padding-left: 20px;
+            margin: 20px 0;
+            color: #555;
+            font-style: italic;
+        }
+        
+        .print-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #3498db;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .print-button:hover {
+            background: #2980b9;
+        }
+        
+        @media print {
+            .print-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <button class="print-button" onclick="window.print()">🖨️ Print / Save as PDF</button>
+    
+    <div class="cover-page">
+        <h1>🧠 NeuroNest</h1>
+        <h2>AI-Powered Cognitive Care Platform</h2>
+        <p><strong>Complete ML Integration & App Transformation</strong></p>
+        <p><strong>Project Proposal</strong></p>
+        <br><br>
+        <p>Development Team</p>
+        <p id="current-date"></p>
+    </div>
+    
+    <div class="toc">
+        <h2>📑 Table of Contents</h2>
+        <ul>
+            <li><a href="#executive-summary">1. Executive Summary</a></li>
+            <li><a href="#project-overview">2. Project Overview</a></li>
+            <li><a href="#current-features">3. Current Features & Architecture</a></li>
+            <li><a href="#ml-integration">4. ML Integration Plan</a></li>
+            <li><a href="#ml-models">5. ML Models & Tools</a></li>
+            <li><a href="#implementation">6. Implementation Roadmap</a></li>
+            <li><a href="#app-conversion">7. Web to App Conversion</a></li>
+            <li><a href="#budget">8. Budget & Resources</a></li>
+            <li><a href="#timeline">9. Timeline & Milestones</a></li>
+            <li><a href="#conclusion">10. Conclusion</a></li>
+        </ul>
+    </div>
+    
+    <h1 id="executive-summary">1. Executive Summary</h1>
+    
+    <div class="executive-summary">
+        <h3>🎯 Project Goal</h3>
+        <p>Transform <strong>NeuroNest</strong> from a web-based cognitive care platform into a comprehensive AI-powered cross-platform application with advanced machine learning capabilities for early cognitive decline detection and personalized therapy.</p>
+        
+        <h3>⏱️ Timeline</h3>
+        <p><strong>8 weeks (1-2 months)</strong></p>
+        
+        <h3>💰 Budget</h3>
+        <p><strong>$50-100/month</strong> (Hybrid approach with open-source + selective APIs)</p>
+        
+        <h3>🎁 Key Deliverables</h3>
+        <ul>
+            <li>9 ML models integrated (cognitive decline, sentiment, voice, emotion, etc.)</li>
+            <li>Cross-platform apps: Web, Desktop (Windows/Mac/Linux), Mobile (iOS/Android)</li>
+            <li>Privacy-first architecture with offline capability</li>
+            <li>Real-time caregiver dashboard with ML-powered insights</li>
+        </ul>
+    </div>
+    
+    <h1 id="project-overview">2. Project Overview</h1>
+    
+    <h2>About NeuroNest</h2>
+    <p>NeuroNest is a comprehensive cognitive care platform designed for dementia patients and their caregivers. It combines therapeutic games, mood tracking, personalized reminders, and AI-driven insights to improve quality of life and enable early intervention.</p>
+    
+    <h3>Current Capabilities</h3>
+    <ul>
+        <li><strong>Cognitive Games:</strong> Memory Match, Pattern Recognition, Daily Routine Recall</li>
+        <li><strong>Adaptive Difficulty:</strong> Rule-based system adjusting game complexity</li>
+        <li><strong>Voice Assistant:</strong> Browser-based speech recognition for hands-free control</li>
+        <li><strong>Mood Tracking:</strong> Daily emotional check-ins with visual history</li>
+        <li><strong>Reminiscence Therapy:</strong> 6 themed interactive stories across 4 chapters each</li>
+        <li><strong>Reminders:</strong> Medication, appointments, meals with audio alerts</li>
+        <li><strong>Caregiver Dashboard:</strong> Patient monitoring and alert system</li>
+        <li><strong>Multi-language Support:</strong> 9 languages including English, Hindi, Bengali, Assamese, and more</li>
+    </ul>
+    
+    <h1 id="current-features">3. Current Features & Architecture</h1>
+    
+    <h2>Technology Stack</h2>
+    
+    <h3>Frontend</h3>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Framework</td>
+            <td>React 18</td>
+            <td>UI development</td>
+        </tr>
+        <tr>
+            <td>Build Tool</td>
+            <td>Vite 5</td>
+            <td>Fast development & bundling</td>
+        </tr>
+        <tr>
+            <td>Styling</td>
+            <td>Tailwind CSS</td>
+            <td>Modern glass morphism design</td>
+        </tr>
+        <tr>
+            <td>Routing</td>
+            <td>React Router 6</td>
+            <td>Navigation</td>
+        </tr>
+        <tr>
+            <td>Charts</td>
+            <td>Chart.js</td>
+            <td>Analytics visualization</td>
+        </tr>
+    </table>
+    
+    <h3>Backend</h3>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Technology</th>
+            <th>Purpose</th>
+        </tr>
+        <tr>
+            <td>Runtime</td>
+            <td>Node.js 18+</td>
+            <td>Server runtime</td>
+        </tr>
+        <tr>
+            <td>Framework</td>
+            <td>Express 4</td>
+            <td>REST API</td>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>MongoDB + Mongoose</td>
+            <td>Data persistence</td>
+        </tr>
+        <tr>
+            <td>Fallback</td>
+            <td>In-memory DB</td>
+            <td>Offline capability</td>
+        </tr>
+    </table>
+    
+    <h1 id="ml-integration">4. ML Integration Plan</h1>
+    
+    <h2>Why Machine Learning?</h2>
+    <p>Current rule-based systems have limitations. ML will enable:</p>
+    <ul>
+        <li><strong>Predictive Analytics:</strong> Detect cognitive decline 2+ weeks earlier</li>
+        <li><strong>Personalization:</strong> Adapt to each patient's unique patterns</li>
+        <li><strong>Deeper Insights:</strong> Understand mood, behavior, and speech nuances</li>
+        <li><strong>Automation:</strong> Generate personalized content dynamically</li>
+    </ul>
+    
+    <h2>ML Architecture Overview</h2>
+    <pre><code>
+┌─────────────────────────────────────────┐
+│    Frontend (React + TensorFlow.js)     │
+│    - Facial emotion detection           │
+│    - Voice recording                    │
+└──────────────────┬──────────────────────┘
+                   │ HTTP/REST
+                   ↓
+┌─────────────────────────────────────────┐
+│    Node.js Backend (Express)            │
+│    - API Gateway                        │
+│    - Business Logic                     │
+│    - Data Management                    │
+└─────────┬─────────────────┬─────────────┘
+          │                 │
+          │ MongoDB         │ HTTP
+          ↓                 ↓
+┌──────────────┐  ┌──────────────────────┐
+│   MongoDB    │  │  Python ML Service   │
+│   Database   │  │  (FastAPI)           │
+│              │  │  - 9 ML Models       │
+└──────────────┘  └──────────────────────┘
+    </code></pre>
+    
+    <h1 id="ml-models">5. ML Models & Tools</h1>
+    
+    <div class="success">
+        <h3>✅ 9 ML Models to Implement</h3>
+    </div>
+    
+    <table>
+        <tr>
+            <th>#</th>
+            <th>Model</th>
+            <th>Purpose</th>
+            <th>Technology</th>
+            <th>Impact</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Cognitive Decline Predictor</td>
+            <td>Early warning system</td>
+            <td>XGBoost</td>
+            <td>🔥 Critical</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Sentiment Analyzer</td>
+            <td>Mood note analysis</td>
+            <td>BERT/RoBERTa</td>
+            <td>🔥 High</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Voice Intent Classifier</td>
+            <td>Better voice commands</td>
+            <td>BERT/Rasa</td>
+            <td>🔥 High</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Adaptive Difficulty ML</td>
+            <td>Personalized games</td>
+            <td>LSTM/Neural Net</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Story Generator</td>
+            <td>AI-written stories</td>
+            <td>GPT-3.5/LLaMA</td>
+            <td>🔥 High</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Facial Emotion Detector</td>
+            <td>Webcam mood tracking</td>
+            <td>DeepFace</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Speech-to-Text</td>
+            <td>Elderly speech understanding</td>
+            <td>Whisper</td>
+            <td>🔥 High</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Anomaly Detector</td>
+            <td>Unusual behavior detection</td>
+            <td>Isolation Forest</td>
+            <td>Medium</td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>Neural Translator</td>
+            <td>Medical-context translation</td>
+            <td>mBART-50</td>
+            <td>Medium</td>
+        </tr>
+    </table>
+    
+    <h2>Tool Recommendations</h2>
+    
+    <h3>Python ML Stack</h3>
+    <pre><code># Core Framework
+pip install fastapi uvicorn
+
+# ML Libraries
+pip install scikit-learn xgboost
+pip install transformers torch
+pip install whisper deepface
+
+# Data Processing
+pip install pandas numpy
+    </code></pre>
+    
+    <h3>Cost Options</h3>
+    <table>
+        <tr>
+            <th>Option</th>
+            <th>Monthly Cost</th>
+            <th>Description</th>
+        </tr>
+        <tr>
+            <td>Free/Open Source</td>
+            <td>$0</td>
+            <td>All models self-hosted</td>
+        </tr>
+        <tr>
+            <td>Hybrid (Recommended)</td>
+            <td>$50-100</td>
+            <td>Mix of open-source + OpenAI API</td>
+        </tr>
+        <tr>
+            <td>Full Cloud</td>
+            <td>$200-300</td>
+            <td>All cloud-based APIs</td>
+        </tr>
+    </table>
+    
+    <h1 id="implementation">6. Implementation Roadmap</h1>
+    
+    <h2>8-Week Schedule</h2>
+    
+    <h3>Week 1-2: ML Backend Foundation</h3>
+    <div class="highlight">
+        <strong>Goal:</strong> Set up Python ML microservice with 3 core models
+    </div>
+    <ul>
+        <li>Set up FastAPI project structure</li>
+        <li>Implement cognitive decline predictor (XGBoost)</li>
+        <li>Implement sentiment analyzer (BERT)</li>
+        <li>Implement intent classifier (BERT)</li>
+        <li>Connect to Node.js backend via REST API</li>
+        <li>Write API documentation</li>
+    </ul>
+    
+    <h3>Week 3-4: Advanced ML Features</h3>
+    <div class="highlight">
+        <strong>Goal:</strong> Add remaining 6 ML models
+    </div>
+    <ul>
+        <li>Facial emotion detection (DeepFace)</li>
+        <li>Speech-to-text (Whisper)</li>
+        <li>Story generation (GPT-3.5 or LLaMA)</li>
+        <li>Anomaly detection (Isolation Forest)</li>
+        <li>Neural translation (mBART-50)</li>
+        <li>ML-based game difficulty (LSTM)</li>
+        <li>Performance optimization & caching</li>
+        <li>Load testing</li>
+    </ul>
+    
+    <h3>Week 5-6: Desktop Application</h3>
+    <div class="highlight">
+        <strong>Goal:</strong> Convert web app to desktop app
+    </div>
+    <ul>
+        <li>Install Electron and dependencies</li>
+        <li>Create main process (electron/main.js)</li>
+        <li>Add desktop features (tray icon, notifications)</li>
+        <li>Build for Windows, Mac, Linux</li>
+        <li>Create installers (.exe, .dmg, .AppImage)</li>
+        <li>Test on all platforms</li>
+    </ul>
+    
+    <h3>Week 7-8: Mobile Application</h3>
+    <div class="highlight">
+        <strong>Goal:</strong> Create iOS and Android apps
+    </div>
+    <ul>
+        <li>Install Capacitor (or React Native)</li>
+        <li>Configure iOS project</li>
+        <li>Configure Android project</li>
+        <li>Add native features (camera, push notifications, geolocation)</li>
+        <li>Test on physical devices</li>
+        <li>Prepare app store submissions</li>
+        <li>Create marketing assets</li>
+    </ul>
+    
+    <h1 id="app-conversion">7. Web to App Conversion</h1>
+    
+    <h2>Desktop App (Electron)</h2>
+    <p>Electron wraps your React web app into a native desktop application that works on Windows, Mac, and Linux.</p>
+    
+    <h3>Advantages</h3>
+    <ul>
+        <li>Reuse 100% of web code</li>
+        <li>Native file system access</li>
+        <li>System tray integration</li>
+        <li>Auto-updates</li>
+        <li>Offline by default</li>
+    </ul>
+    
+    <h3>Quick Setup</h3>
+    <pre><code>npm install --save-dev electron electron-builder
+npm run electron:build  # Creates installers
+    </code></pre>
+    
+    <h2>Mobile App (Capacitor)</h2>
+    <p>Capacitor converts your React web app into native iOS and Android apps with access to native device features.</p>
+    
+    <h3>Advantages</h3>
+    <ul>
+        <li>Reuse 95%+ of web code</li>
+        <li>Native camera access (for emotion detection)</li>
+        <li>Local push notifications (for reminders)</li>
+        <li>Offline storage</li>
+        <li>App store distribution</li>
+    </ul>
+    
+    <h3>Quick Setup</h3>
+    <pre><code>npm install @capacitor/core @capacitor/cli
+npx cap add android
+npx cap add ios
+npx cap sync  # Build and sync
+    </code></pre>
+    
+    <h1 id="budget">8. Budget & Resources</h1>
+    
+    <h2>Monthly Operating Costs</h2>
+    <table>
+        <tr>
+            <th>Component</th>
+            <th>Free Option</th>
+            <th>Hybrid Option</th>
+            <th>Premium Option</th>
+        </tr>
+        <tr>
+            <td>ML Models</td>
+            <td>Open-source ($0)</td>
+            <td>Mix ($20-50)</td>
+            <td>All APIs ($100-200)</td>
+        </tr>
+        <tr>
+            <td>Server Hosting</td>
+            <td>Self-host ($0)</td>
+            <td>VPS ($20-30)</td>
+            <td>AWS/GCP ($100+)</td>
+        </tr>
+        <tr>
+            <td>Database</td>
+            <td>MongoDB local ($0)</td>
+            <td>Atlas free tier ($0)</td>
+            <td>Atlas M10 ($57)</td>
+        </tr>
+        <tr>
+            <td>Storage</td>
+            <td>Local ($0)</td>
+            <td>DO Spaces ($5)</td>
+            <td>AWS S3 ($20+)</td>
+        </tr>
+        <tr>
+            <td><strong>TOTAL</strong></td>
+            <td><strong>$0</strong></td>
+            <td><strong>$50-100</strong></td>
+            <td><strong>$200-400</strong></td>
+        </tr>
+    </table>
+    
+    <div class="highlight">
+        <strong>Recommended:</strong> Start with Hybrid option ($50-100/month) for best balance of cost, performance, and reliability.
+    </div>
+    
+    <h2>Development Requirements</h2>
+    <ul>
+        <li><strong>CPU:</strong> Intel i5 / AMD Ryzen 5 or better</li>
+        <li><strong>RAM:</strong> 16GB (8GB minimum)</li>
+        <li><strong>Storage:</strong> 50GB free space</li>
+        <li><strong>GPU:</strong> Optional (speeds up ML training 5-10x)</li>
+        <li><strong>OS:</strong> Windows 10+, macOS 10.15+, or Linux</li>
+    </ul>
+    
+    <h1 id="timeline">9. Timeline & Milestones</h1>
+    
+    <table>
+        <tr>
+            <th>Week</th>
+            <th>Milestone</th>
+            <th>Deliverable</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>ML Service Setup</td>
+            <td>FastAPI running with 3 models</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Core ML Integration</td>
+            <td>Backend connected to ML service</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Advanced ML Models</td>
+            <td>6 additional models integrated</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>ML Testing & Optimization</td>
+            <td>Performance benchmarks met</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Desktop App (Windows/Mac)</td>
+            <td>.exe and .dmg installers</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>Desktop App (Linux)</td>
+            <td>.AppImage installer</td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>Mobile App (Android)</td>
+            <td>.apk ready for testing</td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>Mobile App (iOS)</td>
+            <td>.ipa ready for App Store</td>
+        </tr>
+    </table>
+    
+    <h1 id="conclusion">10. Conclusion</h1>
+    
+    <div class="success">
+        <h2>🎯 Project Impact</h2>
+        <p>Upon completion, NeuroNest will be transformed from a web application into a comprehensive AI-powered healthcare platform with:</p>
+        <ul>
+            <li><strong>Early Detection:</strong> Cognitive decline detected 2+ weeks earlier through ML prediction</li>
+            <li><strong>Personalization:</strong> Each patient gets adaptive, ML-driven experiences</li>
+            <li><strong>Accessibility:</strong> Available on Web, Windows, Mac, Linux, iOS, and Android</li>
+            <li><strong>Intelligence:</strong> 9 ML models providing deep insights and automation</li>
+            <li><strong>Privacy:</strong> Can run completely offline with local ML models</li>
+            <li><strong>Scale:</strong> Ready for thousands of concurrent users</li>
+        </ul>
+    </div>
+    
+    <h2>Success Metrics</h2>
+    <table>
+        <tr>
+            <th>Metric</th>
+            <th>Target</th>
+        </tr>
+        <tr>
+            <td>ML Prediction Accuracy</td>
+            <td>>85%</td>
+        </tr>
+        <tr>
+            <td>API Response Time</td>
+            <td><2 seconds</td>
+        </tr>
+        <tr>
+            <td>Patient Engagement Increase</td>
+            <td>+30%</td>
+        </tr>
+        <tr>
+            <td>Early Intervention</td>
+            <td>2+ weeks earlier</td>
+        </tr>
+        <tr>
+            <td>Platform Support</td>
+            <td>6 platforms</td>
+        </tr>
+        <tr>
+            <td>Monthly Operating Cost</td>
+            <td>$50-100</td>
+        </tr>
+    </table>
+    
+    <h2>Next Steps</h2>
+    <ol>
+        <li>Review and approve project proposal</li>
+        <li>Set up development environment</li>
+        <li>Begin Week 1 implementation (ML backend)</li>
+        <li>Weekly progress reviews</li>
+        <li>Final testing and deployment (Week 8)</li>
+    </ol>
+    
+    <div class="highlight">
+        <h3>📚 Complete Documentation Available</h3>
+        <p>For detailed technical specifications, code examples, and step-by-step guides, refer to:</p>
+        <ul>
+            <li><code>docs/ML_INTEGRATION_PLAN.md</code> - Complete technical guide</li>
+            <li><code>docs/ML_QUICK_START.md</code> - Quick setup guide</li>
+            <li><code>docs/ML_ARCHITECTURE.md</code> - Architecture diagrams</li>
+            <li><code>ML_ROADMAP.md</code> - Detailed roadmap</li>
+        </ul>
+    </div>
+    
+    <hr>
+    <p style="text-align: center; color: #7f8c8d; margin-top: 40px;">
+        <strong>NeuroNest: Transforming Cognitive Care Through AI</strong><br>
+        <em>Built with ❤️ for dementia patients and their caregivers</em>
+    </p>
+    
+    <script>
+        // Set current date
+        document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', { 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        });
+        
+        // Auto-print dialog after 2 seconds
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                if (confirm('Ready to save as PDF? Click OK to open print dialog, or Cancel to review first.')) {
+                    window.print();
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>

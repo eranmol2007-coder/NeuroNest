@@ -1,0 +1,40 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background glow -->
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#10b981" flood-opacity="0.3"/>
+    </filter>
+    <!-- Inner shadow for 3D effect -->
+    <filter id="inner-shadow">
+      <feOffset dx="0" dy="-4"/>
+      <feGaussianBlur stdDeviation="3" result="offset-blur"/>
+      <feComposite operator="out" in="SourceGraphic" in2="offset-blur" result="inverse"/>
+      <feFlood flood-color="black" flood-opacity="0.2" result="color"/>
+      <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+    
+    <!-- Gradients -->
+    <linearGradient id="body-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#34d399"/>
+      <stop offset="100%" stop-color="#059669"/>
+    </linearGradient>
+    
+    <linearGradient id="body-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6ee7b7"/>
+      <stop offset="100%" stop-color="#10b981"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Person 2 (Back) -->
+  <g filter="url(#glow)">
+    <circle cx="42" cy="22" r="10" fill="url(#body-grad-1)" filter="url(#inner-shadow)"/>
+    <path d="M42 36C32 36 28 44 28 50V54H56V50C56 44 52 36 42 36Z" fill="url(#body-grad-1)" filter="url(#inner-shadow)"/>
+  </g>
+
+  <!-- Person 1 (Front) -->
+  <g filter="url(#glow)">
+    <circle cx="22" cy="26" r="12" fill="url(#body-grad-2)" filter="url(#inner-shadow)"/>
+    <path d="M22 42C10 42 6 50 6 56V60H38V56C38 50 34 42 22 42Z" fill="url(#body-grad-2)" filter="url(#inner-shadow)"/>
+  </g>
+</svg>

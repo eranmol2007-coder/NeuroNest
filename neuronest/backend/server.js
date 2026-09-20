@@ -1,0 +1,127 @@
+require('dotenv').config();
+const express = require('express');
+const cors = require('cors');
+const morgan = require('morgan');
+const helmet = require('helmet');
+const compression = require('compression');
+const path = require('path');
+
+const connectDB = require('./config/db');
+const { setMemoryMode } = require('./utils/modelResolver');
+const { notFound, errorHandler } = require('./middleware/errorHandler');
+
+const patientRoutes = require('./routes/patientRoutes');
+const caregiverRoutes = require('./routes/caregiverRoutes');
+const scoreRoutes = require('./routes/scoreRoutes');
+const reminderRoutes = require('./routes/reminderRoutes');
+const alertRoutes = require('./routes/alertRoutes');
+const moodRoutes = require('./routes/moodRoutes');
+const voiceRoutes = require('./routes/voiceRoutes');
+const authRoutes = require('./routes/authRoutes');
+const reminiscenceRoutes = require('./routes/reminiscenceRoutes');
+const personalStoryRoutes = require('./routes/personalStoryRoutes');
+const aiRoutes = require('./routes/aiRoutes');
+
+const app = express();
+
+app.use(helmet({ crossOriginResourcePolicy: false, contentSecurityPolicy: false }));
+app.use(compression());
+app.use(cors({ origin: '*' }));
+app.use(express.json({ limit: '5mb' }));
+app.use(express.urlencoded({ extended: true }));
+if (process.env.NODE_ENV !== 'test') {
+  app.use(morgan('dev'));
+}
+
+// Serve frontend build FIRST
+const frontendBuild = path.join(__dirname, '..', 'frontend', 'dist');
+app.use(express.static(frontendBuild));
+
+// API health
+app.get('/api/health', (req, res) => {
+  const mongoose = require('mongoose');
+  const connected = mongoose.connection.readyState === 1;
+  res.json({
+    success: true,
+    mode: connected ? 'mongodb' : 'memory',
+    dbState: ['disconnected', 'connected', 'connecting', 'disconnecting'][mongoose.connection.readyState] || 'unknown',
+  });
+});
+
+// API routes
+app.use('/api/patients', patientRoutes);
+app.use('/api/caregivers', caregiverRoutes);
+app.use('/api/scores', scoreRoutes);
+app.use('/api/reminders', reminderRoutes);
+app.use('/api/alerts', alertRoutes);
+app.use('/api/moods', moodRoutes);
+app.use('/api/auth', authRoutes);
+app.use('/api/voice', voiceRoutes);
+app.use('/api/reminiscence', reminiscenceRoutes);
+app.use('/api/personal-stories', personalStoryRoutes);
+app.use('/api/ai', aiRoutes);
+
+// SPA fallback
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api/')) return next();
+  res.sendFile(path.join(frontendBuild, 'index.html'), (err) => {
+    if (err) next();
+  });
+});
+
+app.use(notFound);
+app.use(errorHandler);
+
+const PORT = process.env.PORT || 5000;
+
+function killPort(port) {
+  try {
+    const { execSync } = require('child_process');
+    const result = execSync(`netstat -ano | findstr :${port} | findstr LISTENING`, { encoding: 'utf8' });
+    const lines = result.trim().split('\n');
+    for (const line of lines) {
+      const parts = line.trim().split(/\s+/);
+      const pid = parts[parts.length - 1];
+      if (pid && pid !== '0') {
+        try { execSync(`taskkill /F /PID ${pid}`); } catch (e) {}
+      }
+    }
+  } catch (e) {}
+}
+
+function startServer(retries = 3) {
+  const server = app.listen(PORT, () => {
+    const mode = 'In-Memory';
+    console.log(`\n  NeuroNest running at http://localhost:${PORT}  [${mode}]\n`);
+  });
+
+  server.on('error', (err) => {
+    if (err.code === 'EADDRINUSE' && retries > 0) {
+      console.log(`  Port ${PORT} in use, killing old process...`);
+      killPort(PORT);
+      setTimeout(() => {
+        startServer(retries - 1);
+      }, 2000);
+    } else {
+      console.error(err);
+      process.exit(1);
+    }
+  });
+}
+
+async function start() {
+  const dbConnected = await connectDB();
+
+  if (!dbConnected) {
+    console.log('   Switching to in-memory database (data will not persist after restart)');
+    setMemoryMode(true);
+  } else {
+    setMemoryMode(false);
+  }
+
+  startServer();
+}
+
+start();
+
+module.exports = app;
